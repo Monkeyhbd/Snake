@@ -8,6 +8,7 @@ import module.data.logo as DataLogo
 import module.data.char as DataChar
 import module.data.wall as DataWall
 import module.graphic.basic as GUIBasic
+import module.graphic.widget as GUIWidget
 
 W = 30
 
@@ -15,72 +16,6 @@ W = 30
 class Public:
     board_dead_point = []  # *W
     wall_dead_point = []  # *W
-
-    # 显示从place1到place2的蛇身Label，返回Label对象
-    # Display the Label of snake's body form place1 to place2, and return this Label object.
-    def show_label(master, place1, place2, color):  # basic
-        body_label = tkinter.Label(master, bg=color)
-        ex = place1[0] - place2[0]
-        ey = place1[1] - place2[1]
-        if ex == 0 and ey > 0:
-            body_label.place(x=place2[0], y=place2[1], width=W, height=ey)
-        elif ex == 0 and ey < 0:
-            body_label.place(x=place2[0], y=place2[1] + ey + W, width=W, height=-ey)
-        elif ex < 0 and ey == 0:
-            body_label.place(x=place2[0] + ex + W, y=place2[1], width=-ex, height=W)
-        elif ex > 0 and ey == 0:
-            body_label.place(x=place2[0], y=place2[1], width=ex, height=W)
-        return body_label
-
-    # [place1] <-- [place2] : way = 'W'
-    def report_way(place1, place2):  # basic
-        ex = place1[0] - place2[0]
-        ey = place1[1] - place2[1]
-        if ex == 0 and ey > 0:
-            return 'S'
-        elif ex == 0 and ey < 0:
-            return 'N'
-        elif ex < 0 and ey == 0:
-            return 'W'
-        elif ex > 0 and ey == 0:
-            return 'E'
-
-    def report_len(place1, place2):  # basic
-        ex = place1[0] - place2[0]
-        ey = place1[1] - place2[1]
-        return int((ex ** 2 + ey ** 2) ** 0.5)
-
-    def extend(point, point_history, n):  # basic
-        idx = len(point) - 1
-        p = point[-1]
-        n = n * W
-        point.pop()
-        while True:
-            e = Public.report_len(p, point_history[idx])
-            w = Public.report_way(point_history[idx], p)
-            if n <= e:
-                if w == 'N':
-                    p[1] -= n
-                if w == 'S':
-                    p[1] += n
-                if w == 'W':
-                    p[0] -= n
-                if w == 'E':
-                    p[0] += n
-                point.append(p)
-                break
-            elif n > e:
-                n = n - e
-                p = point_history[idx]
-                idx += 1
-                point.append(p.copy())
-        return point
-
-    def format_fps(tt):  # basic
-        if tt == 0:
-            return '+∞'
-        fps = str(1 / tt)
-        return fps[:5]
 
 
 class GUI:
@@ -92,37 +27,6 @@ class GUI:
         lmy.title('贪吃蛇')
         lmy.geometry('1260x660')
         lmy.update()
-
-    def board_init(master, h=20, w=40):  # widget
-        board = tkinter.Canvas(master)
-        GUI.board = board
-        for a in range(h):
-            Public.board_dead_point.append([-W, a * W])  # W
-            Public.board_dead_point.append([w * W, a * W])  # E
-        for b in range(w):
-            Public.board_dead_point.append([b * W, -W])  # N
-            Public.board_dead_point.append([b * W, h * W])  # S
-        board.size = [w, h]
-        board.place(x=W, y=W, width=w * W, height=h * W)
-        for a in range(h):
-            for b in range(w):
-                if a % 2 - b % 2 == 0:
-                    tkinter.Label(board, bg='white').place(x=b * W, y=a * W, width=W, height=W)
-
-        return board
-
-    def wall_display(master, position_list, color='green'):  # basic
-        for position in position_list:
-            wall = tkinter.Label(master, text='X', bg=color)
-            wall.place(x=position[0] * W, y=position[1] * W, width=W, height=W)
-            GUI.wall_list.append(wall)
-            Public.wall_dead_point.append([int(position[0] * W), position[1] * W])
-
-    def wall_destroy():
-        for wall in GUI.wall_list:
-            wall.destroy()
-        GUI.wall_list = []
-        Public.wall_dead_point = []
 
     def door_init(master):
         bg1 = tkinter.Label(master, bg='white')
@@ -395,12 +299,12 @@ class GUI:
                                                           width=W,
                                                           height=page_single.root.winfo_height() - 2 * W)
 
-        board = GUI.board_init(page_single.root)
+        GUI.board = GUIWidget.board_init(page_single.root, 20, 40, Public.board_dead_point)
         GUI.panel_init(page_single.root)
         GUI.info_init(page_single.root)
 
         global monkeyhbd
-        monkeyhbd = Snake(board, 1, 10, 15, 'black', 'red', int(W / 5))
+        monkeyhbd = Snake(GUI.board, 1, 10, 15, 'black', 'red', int(W / 5))
         monkeyhbd.setDaemon(True)
         monkeyhbd.start()
 
@@ -432,7 +336,7 @@ class GUI:
                                                            width=W,
                                                            height=page_single.root.winfo_height() - 2 * W)
 
-        board = GUI.board_init(page_single.root)
+        GUI.board = GUIWidget.board_init(page_single.root, 20, 40, Public.board_dead_point)
         GUI.panel_init(page_single.root)
         GUI.info_init(page_single.root)
 
@@ -544,7 +448,7 @@ class Snake(threading.Thread):
             self.head[0] += self.step
         # 更新尾部
         tail = self.point[-2:]  # tail = [[20, 40], [20, 100]] --> w = 'N'
-        w = Public.report_way(tail[0], tail[1])
+        w = GUIBasic.report_way(tail[0], tail[1])
         if w == 'N':
             self.point[-1][1] -= self.step
         if w == 'S':
@@ -607,28 +511,28 @@ class Snake(threading.Thread):
             if way == 'N':
                 if [self.head[0], self.head[1] - W] == food:
                     self.condition = 11
-                    self.point = Public.extend(self.point, self.point_history, self.food[2])
+                    self.point = GUIBasic.extend(self.point, self.point_history, self.food[2])
                     self.len += self.food[2]
                     self.food[3].destroy()
                     self.feed()
             elif way == 'S':
                 if [self.head[0], self.head[1] + W] == food:
                     self.condition = 11
-                    self.point = Public.extend(self.point, self.point_history, self.food[2])
+                    self.point = GUIBasic.extend(self.point, self.point_history, self.food[2])
                     self.len += self.food[2]
                     self.food[3].destroy()
                     self.feed()
             elif way == 'W':
                 if [self.head[0] - W, self.head[1]] == food:
                     self.condition = 11
-                    self.point = Public.extend(self.point, self.point_history, self.food[2])
+                    self.point = GUIBasic.extend(self.point, self.point_history, self.food[2])
                     self.len += self.food[2]
                     self.food[3].destroy()
                     self.feed()
             elif way == 'E':
                 if [self.head[0] + W, self.head[1]] == food:
                     self.condition = 11
-                    self.point = Public.extend(self.point, self.point_history, self.food[2])
+                    self.point = GUIBasic.extend(self.point, self.point_history, self.food[2])
                     self.len += self.food[2]
                     self.food[3].destroy()
                     self.feed()
@@ -679,7 +583,7 @@ class Snake(threading.Thread):
                 # print('sleep' + str(self.counter))
 
             if self.counter % 5 == 0:
-                GUI.fps_label2['text'] = Public.format_fps(time.perf_counter() - t0)
+                GUI.fps_label2['text'] = GUIBasic.format_fps(time.perf_counter() - t0)
 
     def run(self):  # Overwrite
         self.play()
@@ -721,7 +625,7 @@ class Back:
                 time.sleep(1)
                 GUI.obj_destroy(GUI_obj)
 
-                GUI.wall_display(GUI.board, DataWall.level1, 'green')
+                GUIBasic.wall_display(GUI.board, DataWall.level1, 'green', Public.wall_dead_point, GUI.wall_list)
 
                 global monkeyhbd
                 monkeyhbd = Snake(GUI.board, 1, 10, 15, 'black', 'red', int(W / 5))
@@ -738,7 +642,7 @@ class Back:
                     print('AC')
                 monkeyhbd.body_destroy()
                 monkeyhbd.food[3].destroy()
-                GUI.wall_destroy()
+                GUIBasic.wall_destroy(Public.wall_dead_point, GUI.wall_list)
 
                 # level 2
                 GUI.door_init(GUI.current_page.root)
@@ -751,7 +655,7 @@ class Back:
                 time.sleep(1)
                 GUI.obj_destroy(GUI_obj)
 
-                GUI.wall_display(GUI.board, DataWall.level2, 'green')
+                GUIBasic.wall_display(GUI.board, DataWall.level2, 'green', Public.wall_dead_point, GUI.wall_list)
 
                 monkeyhbd = Snake(GUI.board, 1, 10, 15, 'black', 'red', int(W / 5))
                 monkeyhbd.level = 2
@@ -767,7 +671,7 @@ class Back:
                     print('AC')
                 monkeyhbd.body_destroy()
                 monkeyhbd.food[3].destroy()
-                GUI.wall_destroy()
+                GUIBasic.wall_destroy(Public.wall_dead_point, GUI.wall_list)
 
                 # level 3
                 GUI.door_init(GUI.current_page.root)
@@ -780,7 +684,7 @@ class Back:
                 time.sleep(1)
                 GUI.obj_destroy(GUI_obj)
 
-                GUI.wall_display(GUI.board, DataWall.level3, 'green')
+                GUIBasic.wall_display(GUI.board, DataWall.level3, 'green', Public.wall_dead_point, GUI.wall_list)
 
                 monkeyhbd = Snake(GUI.board, 1, 10, 15, 'black', 'red', int(W / 5))
                 monkeyhbd.level = 3

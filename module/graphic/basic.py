@@ -30,8 +30,8 @@ def extend(point, point_history, n):
     n = n * W
     point.pop()
     while True:
-        e = Public.report_len(p, point_history[idx])
-        w = Public.report_way(point_history[idx], p)
+        e = report_len(p, point_history[idx])
+        w = report_way(point_history[idx], p)
         if n <= e:
             if w == 'N':
                 p[1] -= n
@@ -74,9 +74,18 @@ def show_label(master, place1, place2, color):
     return body_label
 
 
-def wall_display(master, position_list, color='green'):
+def wall_display(master, position_list, color, wall_dead_point, wall_list):
+    wall_dead_point.clear()
+    wall_list.clear()
     for position in position_list:
         wall = tkinter.Label(master, text='X', bg=color)
         wall.place(x=position[0] * W, y=position[1] * W, width=W, height=W)
-        GUI.wall_list.append(wall)
-        Public.wall_dead_point.append([int(position[0] * W), position[1] * W])
+        wall_list.append(wall)
+        wall_dead_point.append([int(position[0] * W), position[1] * W])
+
+
+def wall_destroy(wall_dead_point, wall_list):
+    for wall in wall_list:
+        wall.destroy()
+    wall_list.clear()
+    wall_dead_point.clear()
