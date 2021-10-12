@@ -1,5 +1,6 @@
 import tkinter
 
+from ..data import char as DataChar
 
 W = 30
 
@@ -58,6 +59,11 @@ def format_fps(tt):  # basic
     return fps[:5]
 
 
+def obj_destroy(obj_list):
+    for obj in obj_list:
+        obj.destroy()
+
+
 # Display the Label of snake's body form place1 to place2, and return this Label object.
 def show_label(master, place1, place2, color):
     body_label = tkinter.Label(master, bg=color)
@@ -89,3 +95,21 @@ def wall_destroy(wall_dead_point, wall_list):
         wall.destroy()
     wall_list.clear()
     wall_dead_point.clear()
+
+
+def char_display(master, c, x, y, w, color='black'):
+    position_list = DataChar.char_dict[c][1:]
+    obj_list = []
+    for position in position_list:
+        block = tkinter.Label(master, bg=color)
+        block.place(x=x + int((position[0]) * w), y=y + int((position[1]) * w), width=w, height=w)
+        obj_list.append(block)
+    return obj_list
+
+
+def str_display(master, s, x, y, w, color='black'):
+    obj_list = []
+    for c in s:
+        obj_list += char_display(master, c, x, y, w, color)
+        x += (DataChar.char_dict[c][0] + 1) * w
+    return obj_list
