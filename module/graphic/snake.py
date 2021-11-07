@@ -53,27 +53,22 @@ class Snake(threading.Thread):
             body_label.destroy()
         self.body = []
 
+    def body_reshow(self):
+        body_backup = self.body
+        self.body_show()
+        self.master.update()
+        for body_label in body_backup:
+            body_label.destroy()
+
     def body_update(self):
-        if self.condition == 11 or self.condition == 2:
-            body_backup = self.body
-            self.body_show()
-            self.master.update()
-            for body_label in body_backup:
-                body_label.destroy()
+        if self.condition == 11 or self.condition == 2:  # 暂停，或其他情况
+            self.body_reshow()
             self.condition = 1
         elif len(self.body) != len(self.point):  # 尾已经减为0，或新增了转弯节点
-            body_backup = self.body
-            self.body_show()
-            self.master.update()
-            for body_label in body_backup:
-                body_label.destroy()
+            self.body_reshow()
         else:
             if len(self.body) == 2:  # 只有head和一个body
-                body_backup = self.body
-                self.body_show()
-                self.master.update()
-                for body_label in body_backup:
-                    body_label.destroy()
+                self.body_reshow()
             else:
                 head_backup = self.body[0]
                 first_body_backup = self.body[1]
