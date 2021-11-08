@@ -156,32 +156,23 @@ class Snake(threading.Thread):
             food = self.food[:2]
             if way == 'N':
                 if [self.head[0], self.head[1] - W] == food:
-                    self.condition = 11
-                    self.point = GUIBasic.extend(self.point, self.point_history, self.food[2])
-                    self.len += self.food[2]
-                    self.food[3].destroy()
-                    self.feed()
+                    self.eat()
             elif way == 'S':
                 if [self.head[0], self.head[1] + W] == food:
-                    self.condition = 11
-                    self.point = GUIBasic.extend(self.point, self.point_history, self.food[2])
-                    self.len += self.food[2]
-                    self.food[3].destroy()
-                    self.feed()
+                    self.eat()
             elif way == 'W':
                 if [self.head[0] - W, self.head[1]] == food:
-                    self.condition = 11
-                    self.point = GUIBasic.extend(self.point, self.point_history, self.food[2])
-                    self.len += self.food[2]
-                    self.food[3].destroy()
-                    self.feed()
+                    self.eat()
             elif way == 'E':
                 if [self.head[0] + W, self.head[1]] == food:
-                    self.condition = 11
-                    self.point = GUIBasic.extend(self.point, self.point_history, self.food[2])
-                    self.len += self.food[2]
-                    self.food[3].destroy()
-                    self.feed()
+                    self.eat()
+
+    def eat(self):
+        self.condition = 11
+        self.point = GUIBasic.extend(self.point, self.point_history, self.food[2])
+        self.len += self.food[2]
+        self.food[3].destroy()
+        self.feed()
 
     def feed(self):
         self.len_label2['text'] = self.len
