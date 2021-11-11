@@ -7,6 +7,12 @@ from . import basic as GUIBasic
 
 W = GUIBasic.W
 
+INIT = 0
+RUN = 1
+WAIT = 2
+END = 3
+BAD = 11
+
 
 class Snake(threading.Thread):
     def __init__(self, master, x, y, n, head_color='black', body_color='red', step=2, len_label2=None, fps_label2=None,
@@ -25,7 +31,9 @@ class Snake(threading.Thread):
         self.way = 'E'
         self.next_way = 'E'
         self.step = step
-        self.condition = 0  # 0-已初始化未开始 1-正在运行 2-暂停 3-停止并结束 11-要求body_update使用body_show
+
+        self.condition = INIT
+        # 0(INIT)-已初始化未开始 1(RUN)-正在运行 2(WAIT)-暂停 3(END)-停止并结束 11(BAD)-要求body_update使用body_show
 
         self.counter = 0
 
@@ -61,9 +69,9 @@ class Snake(threading.Thread):
             body_label.destroy()
 
     def body_update(self):
-        if self.condition == 11 or self.condition == 2:  # 暂停，或其他情况
+        if self.condition == WAIT or self.condition == BAD:  # 暂停，或其他情况
             self.body_reshow()
-            self.condition = 1
+            self.condition = RUN
         elif len(self.body) != len(self.point):  # 尾已经减为0，或新增了转弯节点
             self.body_reshow()
         else:
@@ -142,16 +150,16 @@ class Snake(threading.Thread):
             point_dead = self.point_body + self.master.board_dead_point + self.wall_dead_point
             if way == 'N':
                 if [self.head[0], self.head[1] - W] in point_dead:
-                    self.condition = 3
+                    self.condition = END
             elif way == 'S':
                 if [self.head[0], self.head[1] + W] in point_dead:
-                    self.condition = 3
+                    self.condition = END
             elif way == 'W':
                 if [self.head[0] - W, self.head[1]] in point_dead:
-                    self.condition = 3
+                    self.condition = END
             elif way == 'E':
                 if [self.head[0] + W, self.head[1]] in point_dead:
-                    self.condition = 3
+                    self.condition = END
 
             food = self.food[:2]
             if way == 'N':
@@ -168,7 +176,7 @@ class Snake(threading.Thread):
                     self.eat()
 
     def eat(self):
-        self.condition = 11
+        self.condition = BAD
         self.point = GUIBasic.extend(self.point, self.point_history, self.food[2])
         self.len += self.food[2]
         self.food[3].destroy()
@@ -187,7 +195,7 @@ class Snake(threading.Thread):
         self.food.append(food_label)
 
     def play(self):
-        self.condition = 1
+        self.condition = RUN
 
         while True:
 
@@ -195,10 +203,10 @@ class Snake(threading.Thread):
 
             t0 = time.perf_counter()
 
-            while self.condition == 2:
+            while self.condition == WAIT:
                 time.sleep(0.05)
 
-            if self.condition == 3:
+            if self.condition == END:
                 break
 
             self.way_change()
