@@ -70,21 +70,24 @@ class Snake(threading.Thread):
 
     # 1.由暂停状态恢复，其他情况 2.尾已经减为0，或新增了转弯节点 3.只有head和一个body
     def body_update(self):
-        if self.condition == WAIT or self.condition == BAD or len(self.body) != len(self.point) or len(self.body) == 2:
+        if self.condition == WAIT or self.condition == BAD or len(self.body) != len(self.point):
             self.body_reshow()
             self.condition = RUN
         else:
-            head_backup = self.body[0]
-            first_body_backup = self.body[1]
-            tail_backup = self.body[-1]
-            self.body[0] = tkinter.Label(self.master, bg=self.head_color)
-            self.body[0].place(x=self.head[0], y=self.head[1], width=W, height=W)
-            self.body[1] = GUIBasic.show_label(self.master, self.point[0], self.point[1], self.body_color)
-            self.body[-1] = GUIBasic.show_label(self.master, self.point[-2], self.point[-1], self.body_color)
-            self.master.update()
-            head_backup.destroy()
-            first_body_backup.destroy()
-            tail_backup.destroy()
+            if len(self.body) == 2:
+                self.body_reshow()
+            else:
+                head_backup = self.body[0]
+                first_body_backup = self.body[1]
+                tail_backup = self.body[-1]
+                self.body[0] = tkinter.Label(self.master, bg=self.head_color)
+                self.body[0].place(x=self.head[0], y=self.head[1], width=W, height=W)
+                self.body[1] = GUIBasic.show_label(self.master, self.point[0], self.point[1], self.body_color)
+                self.body[-1] = GUIBasic.show_label(self.master, self.point[-2], self.point[-1], self.body_color)
+                self.master.update()
+                head_backup.destroy()
+                first_body_backup.destroy()
+                tail_backup.destroy()
 
     def point_update(self):
         # 更新头部
