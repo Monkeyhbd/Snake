@@ -8,7 +8,7 @@
 
 ## 展示
 
-[视频链接](https://finder.video.qq.com/251/20302/stodownload?encfilekey=Cvvj5Ix3eezXKmVNfShJRUicJJMYPEroic4L0paJjibKRLcKXqflxGoqVENTdyTHpj95u4DUHEBzIYwKkQveXRxUfVWGBCghtXF88NmgZl1KllicpyclKSUVgOM3lwjLAKUtZVb2aziaCImbX9XlqhlyF05bFRYQW46lumiaMahjf6TV5C141Dtr0AsDs8hBzjUicde&token=AxricY7RBHdUDqWtrxpDNiaDMeG92snzvicv77UfR0JwGeNUF36a8ZbYZQawaJbPOtuAWUPbm4Ryk4&idx=1&a=1&adaptivelytrans=0&bizid=1023&dotrans=2&hy=SZ&m=9606d56fbe8790e88b595cb1ff9639b8)
+[视频链接](https://share.plvideo.cn/front/video/preview?vid=0826dfb9105d3ca2e6f765229832e407_0)
 
 ## 已实现的目标
 

@@ -68,14 +68,13 @@ class Snake(threading.Thread):
         for body_label in body_backup:
             body_label.destroy()
 
+    # 1.由暂停状态恢复，其他情况 2.尾已经减为0，或新增了转弯节点 3.只有head和一个body
     def body_update(self):
-        if self.condition == WAIT or self.condition == BAD:  # 暂停，或其他情况
+        if self.condition == WAIT or self.condition == BAD or len(self.body) != len(self.point):
             self.body_reshow()
             self.condition = RUN
-        elif len(self.body) != len(self.point):  # 尾已经减为0，或新增了转弯节点
-            self.body_reshow()
         else:
-            if len(self.body) == 2:  # 只有head和一个body
+            if len(self.body) == 2:
                 self.body_reshow()
             else:
                 head_backup = self.body[0]
