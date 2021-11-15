@@ -31,7 +31,48 @@ def level_back_create(master, board):
         else:
             return 0
 
-    def md():
+    def level(level_n):
+        wall_dead_point = []
+        wall_list = []
+
+        # level level_n
+        return_obj = GUIDoor.door_init(master.current_page.root)
+        door1 = return_obj['door1']
+        door2 = return_obj['door2']
+
+        GUIWidget.level_init(master.current_page.root, level_n)
+        obj_list = GUIBasic.str_display(master=master.current_page.root, s='LEVEL ' + str(level_n),
+                                        x=int(master.current_page.root.winfo_width() * 0.4) + W * 2,
+                                        y=int(master.current_page.root.winfo_height() * 0.4) + W * 2,
+                                        w=W / 30 * 4.5, color='red')
+        time.sleep(1)
+        GUIBasic.obj_destroy(obj_list)
+
+        GUIBasic.wall_display(board, DataWall.level_box[level_n-1], 'green', wall_dead_point, wall_list)
+
+        monkeyhbd = GUISnake.Snake(board, 1, 10, 15, 'black', 'red', int(W / 5), master.len_label2,
+                                   master.fps_label2, wall_dead_point)
+        GUIWidget.panel_init(master, monkeyhbd)
+        monkeyhbd.level = level_n
+        monkeyhbd.setDaemon(True)
+        monkeyhbd.start()
+
+        GUIDoor.door_thread_create(door1, door2, monkeyhbd)
+        result = wait_len(monkeyhbd, 30)
+        if result == 0:
+            GUIWidget.exit_init(master.current_page.root, monkeyhbd, 'level')
+            return result
+        else:
+            print('AC')
+            if level_n == len(DataWall.level_box):
+                GUIWidget.exit_init(master.current_page.root, monkeyhbd, 'level_win')
+            else:
+                monkeyhbd.body_destroy()
+                monkeyhbd.food[3].destroy()
+                GUIBasic.wall_destroy(wall_dead_point, wall_list)
+            return 1
+
+    def mdb():
         wall_dead_point = []
         wall_list = []
         for _ in range(1):
@@ -133,6 +174,24 @@ def level_back_create(master, board):
                 print('AC')
 
             GUIWidget.exit_init(master.current_page.root, monkeyhbd, 'level_win')
+            # win
+
+    def md():
+        for _ in range(1):
+            # level 1
+            rtn = level(1)
+            if rtn == 0:
+                break
+
+            # level 2
+            rtn = level(2)
+            if rtn == 0:
+                break
+
+            # level 3
+            rtn = level(3)
+            if rtn == 0:
+                break
             # win
 
     level_back = threading.Thread()
