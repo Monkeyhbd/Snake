@@ -28,5 +28,6 @@ GUIBasic.W = W
 
 window.geometry('+20+20')
 window.geometry(str(int(42*W)) + 'x' + str(int(22*W)))
+window.resizable(False, False)
 window.current_page = None
 window.update()
