@@ -3,8 +3,11 @@ import tkinter
 
 from . import basic as GUIBasic
 
-# 告诉 Windows 使用程序自身的dpi适配
-ctypes.windll.shcore.SetProcessDpiAwareness(1)
+try:
+    # 告诉 Windows 使用程序自身的dpi适配
+    ctypes.windll.shcore.SetProcessDpiAwareness(1)
+except AttributeError:
+    pass
 
 window = tkinter.Tk()
 window.title('贪吃蛇')
@@ -17,7 +20,7 @@ if height >= 2160:
 elif height >= 1440:
     W = 50
 elif height >= 1080:
-    W = 45
+    W = 40
 else:
     W = 30
 
