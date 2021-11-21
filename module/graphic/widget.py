@@ -27,14 +27,16 @@ def board_init(master, h, w):
 
 def info_init(master):
     len_label1 = tkinter.Label(master, text='len', bg='white')
-    len_label1.place(x=0 + W, y=master.winfo_height() - W + 2, width=30, height=W - 4)
+    len_label1.place(x=0 + W, y=master.winfo_height() - 0.9 * W, width=1.5 * W, height=0.8 * W)
     len_label2 = tkinter.Label(master, bg='white')
-    len_label2.place(x=35 + W, y=master.winfo_height() - W + 2, width=40, height=W - 4)
+    len_label2.place(x=0 + W + 1.5 * W + 0.1 * W, y=master.winfo_height() - 0.9 * W, width=1.5 * W, height=0.8 * W)
 
     fps_label1 = tkinter.Label(master, text='fps', bg='white')
-    fps_label1.place(x=master.winfo_width() - W - 75, y=master.winfo_height() - W + 2, width=30, height=W - 4)
+    fps_label1.place(x=master.winfo_width() - W - 3 * W - 0.1 * W, y=master.winfo_height() - 0.9 * W,
+                     width=1.5 * W, height=0.8 * W)
     fps_label2 = tkinter.Label(master, bg='white')
-    fps_label2.place(x=master.winfo_width() - W - 40, y=master.winfo_height() - W + 2, width=40, height=W - 4)
+    fps_label2.place(x=master.winfo_width() - W - 1.5 * W, y=master.winfo_height() - 0.9 * W,
+                     width=1.5 * W, height=0.8 * W)
 
     return {'len_label2': len_label2, 'fps_label2': fps_label2}
 
@@ -93,7 +95,7 @@ def exit_init(master, snake, mode='single'):  # master is a Page.
 
 def level_init(master, level):
     level_info = tkinter.Label(master, text='Level ' + str(level), bg='white')
-    level_info.place(x=master.winfo_width() * 0.5 - 40, y=21 * W + 2, width=80, height=W - 4)
+    level_info.place(x=master.winfo_width() * 0.5 - 0.8 * W, y=21 * W + 0.1 * W, width=1.6 * W, height=0.8 * W)
 
 
 def panel_init(master, snake):
