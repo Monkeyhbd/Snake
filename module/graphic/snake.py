@@ -143,7 +143,7 @@ class Snake(threading.Thread):
                 (way in ['W', 'E'] and self.way in ['W', 'E'])):
             self.next_way = way
 
-    def check(self):
+    def check(self):  # Check if food or wall in front of snake.
         if self.head[0] % W == 0 and self.head[1] % W == 0:
             way = self.way
             point_dead = self.point_body + self.master.board_dead_point + self.wall_dead_point
@@ -178,11 +178,11 @@ class Snake(threading.Thread):
         self.condition = BAD
         self.point = GUIBasic.extend(self.point, self.point_history, self.food[2])
         self.len += self.food[2]
+        self.len_label2['text'] = self.len
         self.food[3].destroy()
         self.feed()
 
     def feed(self):
-        self.len_label2['text'] = self.len
         self.food = [random.randint(0, self.master.size[0] - 1) * W,
                      random.randint(0, self.master.size[1] - 1) * W]
         while self.food in self.point_body + self.wall_dead_point:
@@ -195,6 +195,7 @@ class Snake(threading.Thread):
 
     def play(self):
         self.condition = RUN
+        self.len_label2['text'] = self.len
 
         while True:
 
@@ -205,12 +206,16 @@ class Snake(threading.Thread):
             while self.condition == WAIT:
                 time.sleep(0.05)
 
-            if self.condition == END:
-                break
-
             self.way_change()
 
             self.check()
+
+            if self.condition == END:
+                self.point_update()
+                self.point_to_point_body()
+                self.body_update()
+                self.condition = END  # Above 3 lines of code maybe change self.condition.
+                break
 
             self.point_update()
             self.point_to_point_body()
