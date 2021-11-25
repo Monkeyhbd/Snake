@@ -21,7 +21,7 @@ class Snake(threading.Thread):
         self.master = master
         self.head = [x * W, y * W]
         self.point = [self.head, [self.head[0] - n * W, self.head[1]]]  # [头，转弯节点，转弯节点 ... 末位位置]，len >= 2
-        self.point_history = [self.head, [0, self.head[1]], [-int(10 * W), self.head[1]]]  # way = 'E'
+        self.point_history = [self.head, [0, self.head[1]], [-int(1000 * W), self.head[1]]]  # way = 'E'
         self.point_body = []  # 蛇身在棋盘上占据的点
         self.food = []  # [x, y, n, food_label]
         self.body = []  # [head_label, body_label, ...]
