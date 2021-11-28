@@ -113,3 +113,16 @@ def str_display(master, s, x, y, w, color='black'):
         obj_list += char_display(master, c, x, y, w, color)
         x += (DataChar.char_dict[c][0] + 1) * w
     return obj_list
+
+
+# Display s in the middle of an area(x, y, width, height).
+def str_middle(master, s, x, y, width, height, w, color='black'):
+    str_width = 0
+    for c in s:
+        str_width += (DataChar.char_dict[c][0] + 1) * w
+    str_width -= w
+    str_height = 5 * w
+    str_x = x + 0.5 * width - 0.5 * str_width
+    str_y = y + 0.5 * height - 0.5 * str_height
+    rtn = str_display(master, s, str_x, str_y, w, color)
+    return rtn

@@ -54,20 +54,23 @@ def exit_init(master, snake, mode='single'):  # master is a Page.
                         height=3.4 * w)
         label_game_over = tkinter.Label(exit_mess, bg='white')
         label_game_over.place(x=0.2 * w, y=0.2 * w, width=3 * w, height=0.8 * w)
-        GUIBasic.str_display(exit_mess, s='GAME OVER', x=0.2 * w + 0.05 * W, y=0.2 * w + 0.35 * W,
-                             w=0.1 * W, color='red')
+        GUIBasic.str_middle(exit_mess, s='GAME OVER', x=0.2 * w, y=0.2 * w, width=3 * w, height=0.8 * w,
+                            w=0.1 * W, color='red')
 
         label_score1 = tkinter.Label(exit_mess, bg='white')
         label_score1.place(x=0.2 * w, y=0.7 * w + 0.5 * w, width=1.4 * w, height=0.8 * w)
-        GUIBasic.str_display(exit_mess, s='SCORE', x=0.2 * w + 0.25 * W, y=0.7 * w + 0.5 * w + 0.48 * W,
-                             w=0.068 * W, color='black')
-        label_score2 = tkinter.Label(exit_mess, text=snake.len, bg='white')
+        GUIBasic.str_middle(exit_mess, s='SCORE',  x=0.2 * w, y=0.7 * w + 0.5 * w, width=1.4 * w, height=0.8 * w,
+                            w=0.068 * W, color='black')
+        label_score2 = tkinter.Label(exit_mess, bg='white')
         label_score2.place(x=0.2 * w + 1.6 * w, y=0.7 * w + 0.5 * w, width=1.4 * w, height=0.8 * w)
+        GUIBasic.str_middle(exit_mess, s=str(snake.len),
+                            x=0.2 * w + 1.6 * w, y=0.7 * w + 0.5 * w, width=1.4 * w, height=0.8 * w,
+                            w=0.068 * W, color='black')
 
         button_back = tkinter.Button(exit_mess, command=lambda: GUIPage.main_page(master.master))
         button_back.place(x=0.2 * w, y=1.7 * w + 0.5 * w, width=3 * w, height=w)
-        GUIBasic.str_display(exit_mess, s='BACK', x=0.2 * w + 1.05 * W, y=1.7 * w + 0.5 * w + 0.45 * W,
-                             w=0.12 * W, color='black')
+        GUIBasic.str_middle(exit_mess, s='BACK', x=0.2 * w, y=1.7 * w + 0.5 * w, width=3 * w, height=w,
+                            w=0.12 * W, color='black')
 
     if mode == 'level':
         exit_mess = tkinter.Canvas(master, bg='orange')
