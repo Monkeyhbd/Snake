@@ -70,45 +70,51 @@ def exit_init(master, snake, mode='single'):  # master is a Page.
         button_back = tkinter.Button(exit_mess, command=lambda: GUIPage.main_page(master.master))
         button_back.place(x=0.2 * w, y=1.7 * w + 0.5 * w, width=3 * w, height=w)
         GUIBasic.str_middle(exit_mess, s='BACK', x=0.2 * w, y=1.7 * w + 0.5 * w, width=3 * w, height=w,
-                            w=0.12 * W, color='black')
+                            w=0.1 * W, color='black')
 
     if mode == 'level':
         exit_mess = tkinter.Canvas(master, bg='orange')
         w = int(1.5 * W)
-        exit_mess.place(x=0.5 * master.winfo_width() - int(2 * w),
-                        y=int(master.winfo_height() / 2) - int(2 * w),
-                        width=4 * w,
-                        height=4 * w)
+        exit_mess.place(x=0.5 * master.winfo_width() - int(1.7 * w),
+                        y=int(master.winfo_height() / 2) - int(1.7 * w),
+                        width=3.4 * w,
+                        height=3.4 * w)
         label_game_over = tkinter.Label(exit_mess, bg='white')
-        label_game_over.place(x=0.5 * w, y=0.5 * w, width=3 * w, height=0.8 * w)
-        GUIBasic.str_display(exit_mess, s='FAIL', x=0.5 * w + 1.25 * W, y=0.5 * w + 0.35 * W,
-                             w=0.12 * W, color='green')
+        label_game_over.place(x=0.2 * w, y=0.2 * w, width=3 * w, height=0.8 * w)
+        GUIBasic.str_middle(exit_mess, s='F A I L', x=0.2 * w, y=0.2 * w, width=3 * w, height=0.8 * w,
+                            w=0.12 * W, color='green')
 
         label_score1 = tkinter.Label(exit_mess, bg='white')
-        label_score1.place(x=0.5 * w, y=w + 0.5 * w, width=1.4 * w, height=0.8 * w)
-        GUIBasic.str_display(exit_mess, s='SCORE', x=0.5 * w + 0.25 * W, y=w + 0.5 * w + 0.48 * W,
-                             w=0.068 * W, color='black')
-        label_score2 = tkinter.Label(exit_mess,
-                                     text=str(snake.level) + ' - ' + str(snake.len), bg='white')
-        label_score2.place(x=0.5 * w + 1.6 * w, y=w + 0.5 * w, width=1.4 * w, height=0.8 * w)
+        label_score1.place(x=0.2 * w, y=w + 0.2 * w, width=1.4 * w, height=0.8 * w)
+        GUIBasic.str_middle(exit_mess, s='SCORE', x=0.2 * w, y=w + 0.2 * w, width=1.4 * w, height=0.8 * w,
+                            w=0.068 * W, color='black')
+        label_score2 = tkinter.Label(exit_mess, bg='white')
+        label_score2.place(x=0.2 * w + 1.6 * w, y=w + 0.2 * w, width=1.4 * w, height=0.8 * w)
+        GUIBasic.str_middle(exit_mess, s=str(snake.level) + ' - ' + str(snake.len),
+                            x=0.2 * w + 1.6 * w, y=w + 0.2 * w, width=1.4 * w, height=0.8 * w,
+                            w=0.068 * W, color='black')
 
         button_back = tkinter.Button(exit_mess, command=lambda: GUIPage.main_page(master.master))
-        button_back.place(x=0.5 * w, y=2 * w + 0.5 * w, width=3 * w, height=w)
-        GUIBasic.str_display(exit_mess, s='BACK', x=0.5 * w + 1.05 * W, y=2 * w + 0.5 * w + 0.45 * W,
-                             w=0.12 * W, color='black')
+        button_back.place(x=0.2 * w, y=2 * w + 0.2 * w, width=3 * w, height=w)
+        GUIBasic.str_middle(exit_mess, s='BACK', x=0.2 * w, y=2 * w + 0.2 * w, width=3 * w, height=w,
+                            w=0.1 * W, color='black')
 
     if mode == 'level_win':
         exit_mess = tkinter.Canvas(master, bg='orange')
         w = int(1.5 * W)
-        exit_mess.place(x=0.5 * master.winfo_width() - int(2 * w),
-                        y=int(master.winfo_height() / 2) - int(1.5 * w),
-                        width=4 * w,
-                        height=3 * w)
-        label_game_over = tkinter.Label(exit_mess, text='闯关成功', bg='white', fg='red')
-        label_game_over.place(x=0.5 * w, y=0.5 * w, width=3 * w, height=0.8 * w)
+        exit_mess.place(x=0.5 * master.winfo_width() - int(1.7 * w),
+                        y=int(master.winfo_height() / 2) - int(1.2 * w),
+                        width=3.4 * w,
+                        height=2.4 * w)
+        label_game_over = tkinter.Label(exit_mess, bg='white', fg='red')
+        label_game_over.place(x=0.2 * w, y=0.2 * w, width=3 * w, height=0.8 * w)
+        GUIBasic.str_middle(exit_mess, s='SUCCESS', x=0.2 * w, y=0.2 * w, width=3 * w, height=0.8 * w,
+                            w=0.12 * W, color='red')
 
-        button_back = tkinter.Button(exit_mess, text='Back', command=lambda: GUIPage.main_page(master.master))
-        button_back.place(x=0.5 * w, y=1 * w + 0.5 * w, width=3 * w, height=w)
+        button_back = tkinter.Button(exit_mess, command=lambda: GUIPage.main_page(master.master))
+        button_back.place(x=0.2 * w, y=1 * w + 0.2 * w, width=3 * w, height=w)
+        GUIBasic.str_middle(exit_mess, s='BACK', x=0.2 * w, y=1 * w + 0.2 * w, width=3 * w, height=w,
+                            w=0.1 * W, color='black')
 
 
 def level_init(master, level):
