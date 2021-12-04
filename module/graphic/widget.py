@@ -1,4 +1,5 @@
 import tkinter
+from tkinter import font
 
 from . import basic as GUIBasic
 from . import page as GUIPage
@@ -29,7 +30,7 @@ def info_init(master):
     len_label1 = tkinter.Label(master, bg='white')
     len_label1.place(x=0 + W, y=master.winfo_height() - 0.9 * W, width=1.5 * W, height=0.8 * W)
     GUIBasic.str_display(master, s='LEN', x=0 + W + 0.16 * W, y=master.winfo_height() - 0.7 * W, w=W/12, color='black')
-    len_label2 = tkinter.Label(master, bg='white')
+    len_label2 = tkinter.Label(master, bg='white', font=tkinter.font.Font(size=int(2 * W ** 0.5)))
     len_label2.place(x=0 + W + 1.5 * W + 0.1 * W, y=master.winfo_height() - 0.9 * W, width=1.5 * W, height=0.8 * W)
 
     fps_label1 = tkinter.Label(master, bg='white')
@@ -37,7 +38,7 @@ def info_init(master):
                      width=1.5 * W, height=0.8 * W)
     GUIBasic.str_display(master, s='FPS', x=master.winfo_width() - W - 3 * W - 0.1 * W + 0.16 * W,
                          y=master.winfo_height() - 0.7 * W, w=W / 12, color='black')
-    fps_label2 = tkinter.Label(master, bg='white')
+    fps_label2 = tkinter.Label(master, bg='white', font=tkinter.font.Font(size=int(2 * W ** 0.5)))
     fps_label2.place(x=master.winfo_width() - W - 1.5 * W, y=master.winfo_height() - 0.9 * W,
                      width=1.5 * W, height=0.8 * W)
 
