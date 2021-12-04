@@ -118,6 +118,7 @@ def str_display(master, s, x, y, w, color='black'):
 
 # Display s in the middle of an area(x, y, width, height).
 def str_middle(master, s, x, y, width, height, w, color='black'):
+    w = int(w)
     str_width = 0
     for c in s:
         str_width += (DataChar.char_dict[c][0] + 1) * w

@@ -29,15 +29,18 @@ def board_init(master, h, w):
 def info_init(master):
     len_label1 = tkinter.Label(master, bg='white')
     len_label1.place(x=0 + W, y=master.winfo_height() - 0.9 * W, width=1.5 * W, height=0.8 * W)
-    GUIBasic.str_display(master, s='LEN', x=0 + W + 0.16 * W, y=master.winfo_height() - 0.7 * W, w=W/12, color='black')
+    GUIBasic.str_middle(master, s='LEN', x=0 + W, y=master.winfo_height() - 0.9 * W, width=1.5 * W, height=0.8 * W,
+                        w=W/12, color='red')
     len_label2 = tkinter.Label(master, bg='white', font=tkinter.font.Font(size=int(2 * W ** 0.5)))
     len_label2.place(x=0 + W + 1.5 * W + 0.1 * W, y=master.winfo_height() - 0.9 * W, width=1.5 * W, height=0.8 * W)
 
     fps_label1 = tkinter.Label(master, bg='white')
     fps_label1.place(x=master.winfo_width() - W - 3 * W - 0.1 * W, y=master.winfo_height() - 0.9 * W,
                      width=1.5 * W, height=0.8 * W)
-    GUIBasic.str_display(master, s='FPS', x=master.winfo_width() - W - 3 * W - 0.1 * W + 0.16 * W,
-                         y=master.winfo_height() - 0.7 * W, w=W / 12, color='black')
+    GUIBasic.str_middle(master, s='FPS',
+                        x=master.winfo_width() - W - 3 * W - 0.1 * W, y=master.winfo_height() - 0.9 * W,
+                        width=1.5 * W, height=0.8 * W,
+                        w=W / 12, color='red')
     fps_label2 = tkinter.Label(master, bg='white', font=tkinter.font.Font(size=int(2 * W ** 0.5)))
     fps_label2.place(x=master.winfo_width() - W - 1.5 * W, y=master.winfo_height() - 0.9 * W,
                      width=1.5 * W, height=0.8 * W)
@@ -121,9 +124,9 @@ def exit_init(master, snake, mode='single'):  # master is a Page.
 def level_init(master, level):
     level_info = tkinter.Label(master, bg='white')
     level_info.place(x=master.winfo_width() * 0.5 - 2.4 * W, y=21 * W + 0.1 * W, width=4.8 * W, height=0.8 * W)
-    GUIBasic.str_display(master, s='LEVEL ' + str(level),
-                         x=master.winfo_width() * 0.5 - 2.4 * W + 1.2 * W, y=master.winfo_height() - 0.7 * W,
-                         w=W/12, color='black')
+    GUIBasic.str_middle(master, s='LEVEL ' + str(level),
+                        x=master.winfo_width() * 0.5 - 2.4 * W, y=21 * W + 0.1 * W, width=4.8 * W, height=0.8 * W,
+                        w=W/12, color='red')
 
 
 def panel_init(master, snake):

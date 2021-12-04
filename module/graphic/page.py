@@ -82,10 +82,12 @@ def main_page(master):
                         width=int(game_main.root.winfo_width() * 0.2),
                         height=int(game_main.root.winfo_height() * 0.1))
 
-    GUIBasic.str_display(master=game_main.root, s='SINGLE MODE',
-                         x=int(game_main.root.winfo_width() * 0.4) + W / 3,
-                         y=int(game_main.root.winfo_height() * 0.4) + W / 1.5,
-                         w=W / 30 * 4.5, color='green')
+    GUIBasic.str_middle(master=game_main.root, s='SINGLE MODE',
+                        x=int(game_main.root.winfo_width() * 0.4),
+                        y=int(game_main.root.winfo_height() * 0.4),
+                        width=int(game_main.root.winfo_width() * 0.2),
+                        height=int(game_main.root.winfo_height() * 0.1),
+                        w=W / 30 * 4.5, color='green')
 
     button_level = tkinter.Button(game_main.root, text='', command=lambda: game_level_mode(master))
     button_level.place(x=int(game_main.root.winfo_width() * 0.4),
@@ -93,10 +95,12 @@ def main_page(master):
                        width=int(game_main.root.winfo_width() * 0.2),
                        height=int(game_main.root.winfo_height() * 0.1))
 
-    GUIBasic.str_display(master=game_main.root, s='LEVEL MODE',
-                         x=int(game_main.root.winfo_width() * 0.4) + W / 1.5,
-                         y=int(game_main.root.winfo_height() * 0.5) + W / 1.5,
-                         w=W / 30 * 4.5, color='orange')
+    GUIBasic.str_middle(master=game_main.root, s='LEVEL MODE',
+                        x=int(game_main.root.winfo_width() * 0.4),
+                        y=int(game_main.root.winfo_height() * 0.5),
+                        width=int(game_main.root.winfo_width() * 0.2),
+                        height=int(game_main.root.winfo_height() * 0.1),
+                        w=W / 30 * 4.5, color='orange')
 
     logo_info = DataLogo.logo_info
 
