@@ -26,7 +26,7 @@ def single_back_create(master, monkeyhbd):
 
 
 def level_back_create(master, board):
-    def wait_len(monkeyhbd, n):
+    def wait_len(monkeyhbd, n):  # n : expected length
         while monkeyhbd.condition != 3:
             time.sleep(1)
         if monkeyhbd.len >= n and monkeyhbd.head[1] == 9 * W and monkeyhbd.head[0] >= 19 * W:
@@ -68,16 +68,29 @@ def level_back_create(master, board):
         else:
             print('AC')
             if level_n == len(DataWall.level_box):  # Last level
-                monkeyhbd.body_destroy()
-                monkeyhbd.food[3].destroy()
-                GUIBasic.wall_destroy(wall_dead_point, wall_list)
+                # monkeyhbd.body_destroy()
+                # monkeyhbd.food[3].destroy()
+                # GUIBasic.wall_destroy(wall_dead_point, wall_list)
+                w = 0.5 * W
+                logo_board = tkinter.Canvas(master.current_page.root)
+                logo_board.place(x=int(master.current_page.root.winfo_width() * 0.5 - 20 * w),
+                                 y=int(master.current_page.root.winfo_height() * 0.5 - 4 * w),
+                                 width=int(40 * w),
+                                 height=int(8 * w))
                 logo_info = DataLogo.logo_info
                 color = ['purple', 'blue', 'orange', 'red', 'green']
+                block_list = []
                 for x in logo_info:
-                    block = tkinter.Label(board, bg=color[random.randint(0, len(color) - 1)])
-                    block.place(x=x[0] * W, y=x[1] * W, width=W, height=W)
+                    block = tkinter.Label(logo_board, bg=color[random.randint(0, len(color) - 1)])
+                    block.place(x=x[0] * w, y=x[1] * w - 6 * w, width=w, height=w)
+                    block_list.append(block)
                     time.sleep(0.03)
-                    board.update()
+                    logo_board.update()
+                time.sleep(2)
+                for block in block_list:
+                    block.destroy()
+                    time.sleep(0.03)
+                    logo_board.update()
                 GUIWidget.exit_init(master.current_page.root, monkeyhbd, 'level_win')
             else:
                 monkeyhbd.body_destroy()
