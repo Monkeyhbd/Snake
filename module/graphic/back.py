@@ -71,26 +71,7 @@ def level_back_create(master, board):
                 # monkeyhbd.body_destroy()
                 # monkeyhbd.food[3].destroy()
                 # GUIBasic.wall_destroy(wall_dead_point, wall_list)
-                w = 0.5 * W
-                logo_board = tkinter.Canvas(master.current_page.root)
-                logo_board.place(x=int(master.current_page.root.winfo_width() * 0.5 - 20 * w),
-                                 y=int(master.current_page.root.winfo_height() * 0.5 - 4 * w),
-                                 width=int(40 * w),
-                                 height=int(8 * w))
-                logo_info = DataLogo.logo_info
-                color = ['purple', 'blue', 'orange', 'red', 'green']
-                block_list = []
-                for x in logo_info:
-                    block = tkinter.Label(logo_board, bg=color[random.randint(0, len(color) - 1)])
-                    block.place(x=x[0] * w, y=x[1] * w - 6 * w, width=w, height=w)
-                    block_list.append(block)
-                    time.sleep(0.03)
-                    logo_board.update()
-                time.sleep(2)
-                for block in block_list:
-                    block.destroy()
-                    time.sleep(0.03)
-                    logo_board.update()
+
                 GUIWidget.exit_init(master.current_page.root, monkeyhbd, 'level_win')
             else:
                 monkeyhbd.body_destroy()
