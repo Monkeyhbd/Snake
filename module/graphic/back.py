@@ -1,11 +1,14 @@
+import tkinter
 import threading
 import time
+import random
 
 from . import basic as GUIBasic
 from . import widget as GUIWidget
 from . import door as GUIDoor
 from . import snake as GUISnake
 from ..data import wall as DataWall
+from ..data import logo as DataLogo
 
 W = GUIBasic.W
 
@@ -23,7 +26,7 @@ def single_back_create(master, monkeyhbd):
 
 
 def level_back_create(master, board):
-    def wait_len(monkeyhbd, n):
+    def wait_len(monkeyhbd, n):  # n : expected length
         while monkeyhbd.condition != 3:
             time.sleep(1)
         if monkeyhbd.len >= n and monkeyhbd.head[1] == 9 * W and monkeyhbd.head[0] >= 19 * W:
@@ -64,7 +67,11 @@ def level_back_create(master, board):
             return result
         else:
             print('AC')
-            if level_n == len(DataWall.level_box):
+            if level_n == len(DataWall.level_box):  # Last level
+                # monkeyhbd.body_destroy()
+                # monkeyhbd.food[3].destroy()
+                # GUIBasic.wall_destroy(wall_dead_point, wall_list)
+
                 GUIWidget.exit_init(master.current_page.root, monkeyhbd, 'level_win')
             else:
                 monkeyhbd.body_destroy()
@@ -73,24 +80,6 @@ def level_back_create(master, board):
             return 1
 
     def md():
-        '''
-        for _ in range(1):
-            # level 1
-            rtn = level(1)
-            if rtn == 0:
-                break
-
-            # level 2
-            rtn = level(2)
-            if rtn == 0:
-                break
-
-            # level 3
-            rtn = level(3)
-            if rtn == 0:
-                break
-            # win
-        '''
         for level_n in range(1, len(DataWall.level_box) + 1):
             rtn = level(level_n)
             if rtn == 0:
