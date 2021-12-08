@@ -8,7 +8,7 @@
 
 ## 展示
 
-[视频链接](https://share.plvideo.cn/front/video/preview?vid=0826dfb91093f4189847f69f6be5fd88_0)
+[视频链接](https://share.plvideo.cn/front/video/preview?vid=0826dfb910a4b4e2783bd7767b09f5fc_0)
 
 ## 已实现的目标
 
