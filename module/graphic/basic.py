@@ -1,6 +1,7 @@
 import tkinter
 
 from ..data import char as DataChar
+from ..parameter import color as ParameterColor
 
 W = 30
 
@@ -97,7 +98,7 @@ def wall_destroy(wall_dead_point, wall_list):
     wall_dead_point.clear()
 
 
-def char_display(master, c, x, y, w, color='black'):
+def char_display(master, c, x, y, w, color=ParameterColor.default):
     position_list = DataChar.char_dict[c][1:]
     obj_list = []
     for position in position_list:
@@ -107,7 +108,7 @@ def char_display(master, c, x, y, w, color='black'):
     return obj_list
 
 
-def str_display(master, s, x, y, w, color='black'):
+def str_display(master, s, x, y, w, color=ParameterColor.default):
     w = int(w)
     obj_list = []
     for c in s:
@@ -117,7 +118,7 @@ def str_display(master, s, x, y, w, color='black'):
 
 
 # Display s in the middle of an area(x, y, width, height).
-def str_middle(master, s, x, y, width, height, w, color='black'):
+def str_middle(master, s, x, y, width, height, w, color=ParameterColor.default):
     w = int(w)
     str_width = 0
     for c in s:

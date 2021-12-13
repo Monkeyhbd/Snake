@@ -7,6 +7,7 @@ from . import widget as GUIWidget
 from . import snake as GUISnake
 from . import back as GUIBack
 from ..data import logo as DataLogo
+from ..parameter import color as ParameterColor
 
 W = GUIBasic.W
 
@@ -45,7 +46,7 @@ def welcome_page(master):
     logo_board.place(x=0.5 * master.winfo_width() - 20 * w, y=0.5 * master.winfo_height() - 10 * w,
                      width=40 * w, height=20 * w)
 
-    color = ['purple', 'blue', 'orange', 'red', 'green']
+    color = ParameterColor.mokey_logo_colors
     for x in logo_info:
         block = tkinter.Label(logo_board, bg=color[random.randint(0, len(color) - 1)])
         block.place(x=x[0] * w, y=x[1] * w, width=w, height=w)
@@ -74,7 +75,7 @@ def main_page(master):
     GUIBasic.str_display(master=game_main.root, s='SNAKE 2',
                          x=int(game_main.root.winfo_width() * 0.4) - W,
                          y=W * 2,
-                         w=W / 30 * 10, color='purple')
+                         w=W / 30 * 10, color=ParameterColor.snake_logo)
 
     button_single = tkinter.Button(game_main.root, text='', command=lambda: game_single(master))
     button_single.place(x=int(game_main.root.winfo_width() * 0.4),
@@ -87,7 +88,7 @@ def main_page(master):
                         y=int(game_main.root.winfo_height() * 0.4),
                         width=int(game_main.root.winfo_width() * 0.2),
                         height=int(game_main.root.winfo_height() * 0.1),
-                        w=W / 30 * 4.5, color='green')
+                        w=W / 30 * 4.5, color=ParameterColor.single_theme)
 
     button_level = tkinter.Button(game_main.root, text='', command=lambda: game_level_mode(master))
     button_level.place(x=int(game_main.root.winfo_width() * 0.4),
@@ -100,7 +101,7 @@ def main_page(master):
                         y=int(game_main.root.winfo_height() * 0.5),
                         width=int(game_main.root.winfo_width() * 0.2),
                         height=int(game_main.root.winfo_height() * 0.1),
-                        w=W / 30 * 4.5, color='orange')
+                        w=W / 30 * 4.5, color=ParameterColor.level_theme)
 
     logo_info = DataLogo.logo_info
 
@@ -110,7 +111,7 @@ def main_page(master):
     logo_board.place(x=0.5 * master.winfo_width() - 20 * w, y=master.winfo_height() - 20 * w,
                      width=40 * w, height=20 * w)
 
-    color = ['purple', 'blue', 'orange', 'red', 'green']
+    color = ParameterColor.mokey_logo_colors
     for x in logo_info:
         block = tkinter.Label(logo_board, bg=color[random.randint(0, len(color) - 1)])
         block.place(x=x[0] * w, y=x[1] * w, width=w, height=w)
@@ -125,29 +126,32 @@ def game_single(master):
     page_single.root.update()
     master.current_page = page_single
 
-    tkinter.Label(page_single.root, bg='green').place(x=0,
-                                                      y=0,
-                                                      width=page_single.root.winfo_width(),
-                                                      height=W)
-    tkinter.Label(page_single.root, bg='green').place(x=0,
-                                                      y=page_single.root.winfo_height() - W,
-                                                      width=page_single.root.winfo_width(),
-                                                      height=W)
-    tkinter.Label(page_single.root, bg='green').place(x=0,
-                                                      y=W,
-                                                      width=W,
-                                                      height=page_single.root.winfo_height() - 2 * W)
-    tkinter.Label(page_single.root, bg='green').place(x=page_single.root.winfo_width() - W,
-                                                      y=W,
-                                                      width=W,
-                                                      height=page_single.root.winfo_height() - 2 * W)
+    border_color = ParameterColor.single_theme
+    tkinter.Label(page_single.root, bg=border_color).place(x=0,
+                                                           y=0,
+                                                           width=page_single.root.winfo_width(),
+                                                           height=W)
+    tkinter.Label(page_single.root, bg=border_color).place(x=0,
+                                                           y=page_single.root.winfo_height() - W,
+                                                           width=page_single.root.winfo_width(),
+                                                           height=W)
+    tkinter.Label(page_single.root, bg=border_color).place(x=0,
+                                                           y=W,
+                                                           width=W,
+                                                           height=page_single.root.winfo_height() - 2 * W)
+    tkinter.Label(page_single.root, bg=border_color).place(x=page_single.root.winfo_width() - W,
+                                                           y=W,
+                                                           width=W,
+                                                           height=page_single.root.winfo_height() - 2 * W)
 
     board = GUIWidget.board_init(page_single.root, 20, 40)
     return_obj = GUIWidget.info_init(page_single.root)
     master.len_label2 = return_obj['len_label2']
     master.fps_label2 = return_obj['fps_label2']
 
-    monkeyhbd = GUISnake.Snake(board, 1, 10, 15, 'black', 'red', int(W / 5), master.len_label2, master.fps_label2, [])
+    monkeyhbd = GUISnake.Snake(board, 1, 10, 15,
+                               ParameterColor.snake_head, ParameterColor.snake_body,
+                               int(W / 5), master.len_label2, master.fps_label2, [])
     GUIWidget.panel_init(master, monkeyhbd)
     monkeyhbd.setDaemon(True)
     monkeyhbd.start()
@@ -164,22 +168,23 @@ def game_level_mode(master):
     page_single.root.update()
     master.current_page = page_single
 
-    tkinter.Label(page_single.root, bg='orange').place(x=0,
-                                                       y=0,
-                                                       width=page_single.root.winfo_width(),
-                                                       height=W)
-    tkinter.Label(page_single.root, bg='orange').place(x=0,
-                                                       y=page_single.root.winfo_height() - W,
-                                                       width=page_single.root.winfo_width(),
-                                                       height=W)
-    tkinter.Label(page_single.root, bg='orange').place(x=0,
-                                                       y=W,
-                                                       width=W,
-                                                       height=page_single.root.winfo_height() - 2 * W)
-    tkinter.Label(page_single.root, bg='orange').place(x=page_single.root.winfo_width() - W,
-                                                       y=W,
-                                                       width=W,
-                                                       height=page_single.root.winfo_height() - 2 * W)
+    border_color = ParameterColor.level_theme
+    tkinter.Label(page_single.root, bg=border_color).place(x=0,
+                                                           y=0,
+                                                           width=page_single.root.winfo_width(),
+                                                           height=W)
+    tkinter.Label(page_single.root, bg=border_color).place(x=0,
+                                                           y=page_single.root.winfo_height() - W,
+                                                           width=page_single.root.winfo_width(),
+                                                           height=W)
+    tkinter.Label(page_single.root, bg=border_color).place(x=0,
+                                                           y=W,
+                                                           width=W,
+                                                           height=page_single.root.winfo_height() - 2 * W)
+    tkinter.Label(page_single.root, bg=border_color).place(x=page_single.root.winfo_width() - W,
+                                                           y=W,
+                                                           width=W,
+                                                           height=page_single.root.winfo_height() - 2 * W)
 
     board = GUIWidget.board_init(page_single.root, 20, 40)
     return_obj = GUIWidget.info_init(page_single.root)

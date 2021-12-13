@@ -3,6 +3,7 @@ import time
 import threading
 
 from . import basic as GUIBasic
+from ..parameter import color as ParameterColor
 
 W = GUIBasic.W
 
@@ -10,14 +11,14 @@ W = GUIBasic.W
 def door_init(master):
     bg1 = tkinter.Label(master, bg='white')
     bg1.place(x=0, y=int(W * 11), width=W, height=W)
-    door1 = tkinter.Label(master, bg='black')
+    door1 = tkinter.Label(master, bg=ParameterColor.default)
     door1.condition = 1  # open
     door1.root = master
     door1.place(x=int(W * 0.8), y=int(W * 11), width=int(W * 0.2), height=0)
 
     bg2 = tkinter.Label(master, bg='white')
     bg2.place(x=int(41 * W), y=int(W * 10), width=W, height=W)
-    door2 = tkinter.Label(master, bg='black')
+    door2 = tkinter.Label(master, bg=ParameterColor.default)
     door2.condition = 0  # close
     door2.root = master
     door2.place(x=int(41 * W), y=int(W * 10), width=int(W * 0.2), height=W)

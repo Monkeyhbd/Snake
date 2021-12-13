@@ -4,6 +4,7 @@ import threading
 import random
 
 from . import basic as GUIBasic
+from ..parameter import color as ParameterColor
 
 W = GUIBasic.W
 
@@ -188,8 +189,8 @@ class Snake(threading.Thread):
         while self.food in self.point_body + self.wall_dead_point:
             self.food = [random.randint(0, self.master.size[0] - 1) * W,
                          random.randint(0, self.master.size[1] - 1) * W]
-        self.food.append(random.randint(1, 3))
-        food_label = tkinter.Label(self.master, text=self.food[2], fg='white', bg='blue')
+        self.food.append(random.randint(15, 30))
+        food_label = tkinter.Label(self.master, text=self.food[2], fg='white', bg=ParameterColor.food)
         food_label.place(x=self.food[0], y=self.food[1], width=W, height=W)
         self.food.append(food_label)
 

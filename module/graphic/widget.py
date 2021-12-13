@@ -6,6 +6,7 @@ import random
 from . import basic as GUIBasic
 from . import page as GUIPage
 from ..data import logo as DataLogo
+from ..parameter import color as ParameterColor
 
 W = GUIBasic.W
 
@@ -33,7 +34,7 @@ def info_init(master):
     len_label1 = tkinter.Label(master, bg='white')
     len_label1.place(x=0 + W, y=master.winfo_height() - 0.9 * W, width=1.5 * W, height=0.8 * W)
     GUIBasic.str_middle(master, s='LEN', x=0 + W, y=master.winfo_height() - 0.9 * W, width=1.5 * W, height=0.8 * W,
-                        w=W/12, color='black')
+                        w=W/12, color=ParameterColor.default)
     len_label2 = tkinter.Label(master, bg='white', font=tkinter.font.Font(size=int(2 * W ** 0.5)))
     len_label2.place(x=0 + W + 1.5 * W + 0.1 * W, y=master.winfo_height() - 0.9 * W, width=1.5 * W, height=0.8 * W)
 
@@ -43,7 +44,7 @@ def info_init(master):
     GUIBasic.str_middle(master, s='FPS',
                         x=master.winfo_width() - W - 3 * W - 0.1 * W, y=master.winfo_height() - 0.9 * W,
                         width=1.5 * W, height=0.8 * W,
-                        w=W / 12, color='black')
+                        w=W / 12, color=ParameterColor.default)
     fps_label2 = tkinter.Label(master, bg='white', font=tkinter.font.Font(size=int(2 * W ** 0.5)))
     fps_label2.place(x=master.winfo_width() - W - 1.5 * W, y=master.winfo_height() - 0.9 * W,
                      width=1.5 * W, height=0.8 * W)
@@ -53,7 +54,7 @@ def info_init(master):
 
 def exit_init(master, snake, mode='single'):  # master is a Page.
     if mode == 'single':
-        exit_mess = tkinter.Canvas(master, bg='orange')
+        exit_mess = tkinter.Canvas(master, bg=ParameterColor.exit_mess)
         w = int(1.5 * W)
         exit_mess.place(x=0.5 * master.winfo_width() - int(1.7 * w),
                         y=int(master.winfo_height() / 2) - int(1.7 * w),
@@ -62,25 +63,25 @@ def exit_init(master, snake, mode='single'):  # master is a Page.
         label_game_over = tkinter.Label(exit_mess, bg='white')
         label_game_over.place(x=0.2 * w, y=0.2 * w, width=3 * w, height=0.8 * w)
         GUIBasic.str_middle(exit_mess, s='GAME OVER', x=0.2 * w, y=0.2 * w, width=3 * w, height=0.8 * w,
-                            w=0.1 * W, color='red')
+                            w=0.1 * W, color=ParameterColor.exit_win)
 
         label_score1 = tkinter.Label(exit_mess, bg='white')
         label_score1.place(x=0.2 * w, y=0.7 * w + 0.5 * w, width=1.4 * w, height=0.8 * w)
         GUIBasic.str_middle(exit_mess, s='SCORE',  x=0.2 * w, y=0.7 * w + 0.5 * w, width=1.4 * w, height=0.8 * w,
-                            w=0.068 * W, color='black')
+                            w=0.068 * W, color=ParameterColor.default)
         label_score2 = tkinter.Label(exit_mess, bg='white')
         label_score2.place(x=0.2 * w + 1.6 * w, y=0.7 * w + 0.5 * w, width=1.4 * w, height=0.8 * w)
         GUIBasic.str_middle(exit_mess, s=str(snake.len),
                             x=0.2 * w + 1.6 * w, y=0.7 * w + 0.5 * w, width=1.4 * w, height=0.8 * w,
-                            w=0.068 * W, color='black')
+                            w=0.068 * W, color=ParameterColor.default)
 
         button_back = tkinter.Button(exit_mess, command=lambda: GUIPage.main_page(master.master))
         button_back.place(x=0.2 * w, y=1.7 * w + 0.5 * w, width=3 * w, height=w)
         GUIBasic.str_middle(exit_mess, s='BACK', x=0.2 * w, y=1.7 * w + 0.5 * w, width=3 * w, height=w,
-                            w=0.1 * W, color='black')
+                            w=0.1 * W, color=ParameterColor.default)
 
     if mode == 'level':
-        exit_mess = tkinter.Canvas(master, bg='orange')
+        exit_mess = tkinter.Canvas(master, bg=ParameterColor.exit_mess)
         w = int(1.5 * W)
         exit_mess.place(x=0.5 * master.winfo_width() - int(1.7 * w),
                         y=int(master.winfo_height() / 2) - int(1.7 * w),
@@ -89,26 +90,26 @@ def exit_init(master, snake, mode='single'):  # master is a Page.
         label_game_over = tkinter.Label(exit_mess, bg='white')
         label_game_over.place(x=0.2 * w, y=0.2 * w, width=3 * w, height=0.8 * w)
         GUIBasic.str_middle(exit_mess, s='F A I L', x=0.2 * w, y=0.2 * w, width=3 * w, height=0.8 * w,
-                            w=0.12 * W, color='green')
+                            w=0.12 * W, color=ParameterColor.exit_fail)
 
         label_score1 = tkinter.Label(exit_mess, bg='white')
         label_score1.place(x=0.2 * w, y=w + 0.2 * w, width=1.4 * w, height=0.8 * w)
         GUIBasic.str_middle(exit_mess, s='SCORE', x=0.2 * w, y=w + 0.2 * w, width=1.4 * w, height=0.8 * w,
-                            w=0.068 * W, color='black')
+                            w=0.068 * W, color=ParameterColor.default)
         label_score2 = tkinter.Label(exit_mess, bg='white')
         label_score2.place(x=0.2 * w + 1.6 * w, y=w + 0.2 * w, width=1.4 * w, height=0.8 * w)
         GUIBasic.str_middle(exit_mess, s=str(snake.level) + ' - ' + str(snake.len),
                             x=0.2 * w + 1.6 * w, y=w + 0.2 * w, width=1.4 * w, height=0.8 * w,
-                            w=0.068 * W, color='black')
+                            w=0.068 * W, color=ParameterColor.default)
 
         button_back = tkinter.Button(exit_mess, command=lambda: GUIPage.main_page(master.master))
         button_back.place(x=0.2 * w, y=2 * w + 0.2 * w, width=3 * w, height=w)
         GUIBasic.str_middle(exit_mess, s='BACK', x=0.2 * w, y=2 * w + 0.2 * w, width=3 * w, height=w,
-                            w=0.1 * W, color='black')
+                            w=0.1 * W, color=ParameterColor.default)
 
     if mode == 'level_win':
         w = 0.5 * W
-        logo_board_border = tkinter.Canvas(master, bg='orange')
+        logo_board_border = tkinter.Canvas(master, bg=ParameterColor.exit_mess)
         logo_board_border.place(x=int(master.winfo_width() * 0.5 - 20.3 * w),
                                 y=int(master.winfo_height() * 0.5 - 4.3 * w),
                                 width=int(40.6 * w), height=int(8.6 * w))
@@ -116,7 +117,7 @@ def exit_init(master, snake, mode='single'):  # master is a Page.
         logo_board.place(x=int(master.winfo_width() * 0.5 - 20 * w), y=int(master.winfo_height() * 0.5 - 4 * w),
                          width=int(40 * w), height=int(8 * w))
         logo_info = DataLogo.logo_info
-        color = ['purple', 'blue', 'orange', 'red', 'green']
+        color = ParameterColor.mokey_logo_colors
         block_list = []
         for x in logo_info:
             block = tkinter.Label(logo_board, bg=color[random.randint(0, len(color) - 1)])
@@ -133,11 +134,11 @@ def exit_init(master, snake, mode='single'):  # master is a Page.
         GUIBasic.str_middle(master, s='SUCCESS',
                             x=int(master.winfo_width() * 0.5 - 20 * w), y=int(master.winfo_height() * 0.5 - 4 * w),
                             width=int(40 * w), height=int(8 * w),
-                            w=0.3 * W, color='red')
+                            w=0.3 * W, color=ParameterColor.exit_win)
         master.update()
 
         time.sleep(1)
-        exit_mess = tkinter.Canvas(master, bg='orange')
+        exit_mess = tkinter.Canvas(master, bg=ParameterColor.exit_mess)
         exit_mess.place(x=0.5 * master.winfo_width() - int(1.5 * W),
                         y=int(master.winfo_height() / 2) + int(3.0 * W),
                         width=3 * W,
@@ -149,7 +150,7 @@ def exit_init(master, snake, mode='single'):  # master is a Page.
                             y=int(master.winfo_height() / 2) + int(3.0 * W),
                             width=3 * W,
                             height=1.4 * W,
-                            w=0.1 * W, color='black')
+                            w=0.1 * W, color=ParameterColor.default)
         master.update()
 
         '''
@@ -176,7 +177,7 @@ def level_init(master, level):
     level_info.place(x=master.winfo_width() * 0.5 - 2.4 * W, y=21 * W + 0.1 * W, width=4.8 * W, height=0.8 * W)
     GUIBasic.str_middle(master, s='LEVEL ' + str(level),
                         x=master.winfo_width() * 0.5 - 2.4 * W, y=21 * W + 0.1 * W, width=4.8 * W, height=0.8 * W,
-                        w=W/12, color='black')
+                        w=W/12, color=ParameterColor.default)
 
 
 def panel_init(master, snake):

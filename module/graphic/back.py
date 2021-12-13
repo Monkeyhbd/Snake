@@ -1,14 +1,12 @@
-import tkinter
 import threading
 import time
-import random
 
 from . import basic as GUIBasic
 from . import widget as GUIWidget
 from . import door as GUIDoor
 from . import snake as GUISnake
 from ..data import wall as DataWall
-from ..data import logo as DataLogo
+from ..parameter import color as ParameterColor
 
 W = GUIBasic.W
 
@@ -47,13 +45,15 @@ def level_back_create(master, board):
         obj_list = GUIBasic.str_display(master=master.current_page.root, s='LEVEL ' + str(level_n),
                                         x=int(master.current_page.root.winfo_width() * 0.4) + W * 2,
                                         y=int(master.current_page.root.winfo_height() * 0.4) + W * 2,
-                                        w=W / 30 * 4.5, color='red')
+                                        w=W / 30 * 4.5, color=ParameterColor.level_tip)
         time.sleep(1)
         GUIBasic.obj_destroy(obj_list)
 
-        GUIBasic.wall_display(board, DataWall.level_box[level_n-1], 'green', wall_dead_point, wall_list)
+        GUIBasic.wall_display(board, DataWall.level_box[level_n-1], ParameterColor.wall, wall_dead_point, wall_list)
 
-        monkeyhbd = GUISnake.Snake(board, 1, 10, 15, 'black', 'red', int(W / 5), master.len_label2,
+        monkeyhbd = GUISnake.Snake(board, 1, 10, 15,
+                                   ParameterColor.snake_head, ParameterColor.snake_body,
+                                   int(W / 5), master.len_label2,
                                    master.fps_label2, wall_dead_point)
         GUIWidget.panel_init(master, monkeyhbd)
         monkeyhbd.level = level_n
