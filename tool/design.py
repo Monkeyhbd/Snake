@@ -30,7 +30,7 @@ class Pixel(tkinter.Button):
 def main_menu(master):
     master.update()
     bar = tkinter.Canvas(master, bg='white')
-    bar.place(x=0, y=0, width=master.winfo_width(), height=1.8 * W)
+    bar.place(x=0, y=0.1 * W, width=master.winfo_width(), height=1.8 * W)
 
     current_x = 0
 
@@ -57,10 +57,37 @@ def paper(master, x, y, w, h):
                 p['text'] = xx
 
 
+def color_bar(master, x, y, width, height):
+    board = tkinter.Canvas(master, bg='white')
+    board.place(x=x, y=y, width=width, height=height)
+    known_color = ['black', 'red', 'orange', 'green', 'blue', 'purple',
+                   'Pink', 'Crimson', 'PaleVioletRed', 'HotPink', 'DeepPink', 'Violet',
+                   'Fuchsia', 'BlueViolet', 'MediumPurple', 'SkyBlue', 'DeepSkyBlue', 'Cyan',
+                   'MediumSpringGreen', 'SpringGreen', 'LimeGreen', 'Lime', 'ForestGreen', 'DarkGreen',
+                   'Chartreuse', 'GreenYellow', 'OliveDrab', 'Yellow', 'Gold', 'Goldenrod',
+                   'Tan', 'DarkOrange', 'Peru', 'Coral', 'OrangeRed', 'Tomato',
+                   'Brown', 'SaddleBrown', 'Sienna', 'Chocolate']
+
+    def change_color_function(new_color):
+        def md():
+            globals()['current_color'] = new_color
+        return md
+
+    current_x, current_y = 0, 0
+    for color in known_color:
+        color_button = tkinter.Button(board, bg=color, command=change_color_function(color))
+        color_button.place(x=current_x, y=current_y, width=W, height=W)
+        current_x += W
+        if current_x + W > width:  # New line.
+            current_x = 0
+            current_y += W
+
+
 if __name__ == '__main__':
     lmy = tkinter.Tk()
     lmy.title('Mokey Designer')
-    lmy.geometry("{}x{}".format(int(X * W), int((Y + 2) * W)))
+    lmy.geometry("{}x{}".format(int((X + 2.2) * W), int((Y + 2) * W)))
     main_menu(lmy)
-    paper(lmy, 0, 2 * W, X, Y)
+    color_bar(lmy, 0, 2 * W, 2 * W, Y * W)
+    paper(lmy, 2.2 * W, 2 * W, X, Y)
     lmy.mainloop()
