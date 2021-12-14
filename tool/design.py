@@ -8,7 +8,7 @@ Y = 20
 
 current_color = 'black'
 data = []  # data = [[x, y, 'color'] ... ]
-pixel_board = []
+pixel_board = []  # pixel = [[pixel00, pixel10 ... ] ... ]
 
 
 class Pixel(tkinter.Button):
@@ -30,6 +30,13 @@ class Pixel(tkinter.Button):
             self.condition = 0
 
 
+def clear_paper():
+    for line in pixel_board:
+        for p in line:
+            if p.condition == 1:
+                p.click()
+
+
 def menu(master):
     menu_bar = tkinter.Menu()
     master['menu'] = menu_bar
@@ -37,10 +44,28 @@ def menu(master):
     file_menu = tkinter.Menu(tearoff=0)
     menu_bar.add_cascade(label='File', menu=file_menu)
 
+    def open_command():
+        open_target = tkinter.filedialog.askopenfile()
+        try:
+            target_read = open_target.read()
+            open_target.close()
+            target_data = eval(target_read)
+            clear_paper()
+            for unit in target_data:
+                global current_color
+                current_color = unit[2]
+                pixel_board[unit[1]][unit[0]].click()
+        except AttributeError:  # Cancel
+            pass
+    file_menu.add_command(label='Open', command=open_command)
+
     def save_command():
         save_target = tkinter.filedialog.asksaveasfile()
-        save_target.write(str(data))
-        save_target.close()
+        try:
+            save_target.write(str(data))
+            save_target.close()
+        except AttributeError:  # Cancel
+            pass
     file_menu.add_command(label='Save', command=save_command)
 
 
@@ -51,8 +76,12 @@ def main_menu(master):
 
     current_x = 0
 
+    clear_button = tkinter.Button(bar, text='Clear', command=clear_paper)
+    clear_button.place(x=0.2 * W, y=0.2 * W, width=2 * W, height=1.4 * W)
+    current_x += 0.2 * W + 2 * W
+
     print_button = tkinter.Button(bar, text='Print', command=lambda: print(data))
-    print_button.place(x=0.2 * W, y=0.2 * W, width=2 * W, height=1.4 * W)
+    print_button.place(x=current_x + 0.2 * W, y=0.2 * W, width=2 * W, height=1.4 * W)
     current_x += 0.2 * W + 2 * W
 
     print_without_color_button = tkinter.Button(bar, text='Print without color',
@@ -66,19 +95,24 @@ def main_menu(master):
         view_window.mainloop()
     view_button = tkinter.Button(bar, text='View', command=view_command)
     view_button.place(x=current_x + 0.2 * W, y=0.2 * W, width=2 * W, height=1.4 * W)
+    current_x += 0.2 * W + 2 * W
 
 
 def paper(master, x, y, w, h):
+    pixel_board.clear()
     board = tkinter.Canvas(master)
     board.place(x=x, y=y, width=w * W, height=h * W)
     for yy in range(h):
+        this_line = []
         for xx in range(w):
             p = Pixel(board, xx, yy)
             p.place(x=xx * W, y=yy * W, width=W, height=W)
+            this_line.append(p)
             if xx == 0:
                 p['text'] = yy
             if yy == 0:
                 p['text'] = xx
+        pixel_board.append(this_line)
 
 
 def color_bar(master, x, y, width, height):
