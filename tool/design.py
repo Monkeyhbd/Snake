@@ -10,7 +10,7 @@ data = []  # data = [[x, y, 'color'] ... ]
 
 class Pixel(tkinter.Button):
     def __init__(self, master, x, y):
-        super().__init__(master, bg='white', command=self.click)
+        tkinter.Button.__init__(self, master, bg='white', command=self.click)
         self.x = x
         self.y = y
         self.condition = 0  # 0 - Unselected, 1 - Selected
