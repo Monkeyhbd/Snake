@@ -1,4 +1,5 @@
 import tkinter
+import tkinter.filedialog
 import view as ToolView
 
 W = 20
@@ -7,6 +8,7 @@ Y = 20
 
 current_color = 'black'
 data = []  # data = [[x, y, 'color'] ... ]
+pixel_board = []
 
 
 class Pixel(tkinter.Button):
@@ -26,6 +28,20 @@ class Pixel(tkinter.Button):
             self['bg'] = 'white'
             data.remove([self.x, self.y, bg_backup])
             self.condition = 0
+
+
+def menu(master):
+    menu_bar = tkinter.Menu()
+    master['menu'] = menu_bar
+
+    file_menu = tkinter.Menu(tearoff=0)
+    menu_bar.add_cascade(label='File', menu=file_menu)
+
+    def save_command():
+        save_target = tkinter.filedialog.asksaveasfile()
+        save_target.write(str(data))
+        save_target.close()
+    file_menu.add_command(label='Save', command=save_command)
 
 
 def main_menu(master):
@@ -95,6 +111,7 @@ if __name__ == '__main__':
     lmy = tkinter.Tk()
     lmy.title('Mokey Designer')
     lmy.geometry("{}x{}".format(int((X + 2.2) * W), int((Y + 2) * W)))
+    menu(lmy)
     main_menu(lmy)
     color_bar(lmy, 0, 2 * W, 2 * W, Y * W)
     paper(lmy, 2.2 * W, 2 * W, X, Y)
