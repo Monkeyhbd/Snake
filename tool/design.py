@@ -1,4 +1,5 @@
 import tkinter
+import view as ToolView
 
 W = 20
 X = 40
@@ -42,6 +43,13 @@ def main_menu(master):
                                                 command=lambda: print([x[: 2] for x in data]))
     print_without_color_button.place(x=current_x + 0.2 * W, y=0.2 * W, width=6 * W, height=1.4 * W)
     current_x += 0.2 * W + 6 * W
+
+    def view_command():
+        view_window = ToolView.Application('Editing', data, W)
+        view_window.display()
+        view_window.mainloop()
+    view_button = tkinter.Button(bar, text='View', command=view_command)
+    view_button.place(x=current_x + 0.2 * W, y=0.2 * W, width=2 * W, height=1.4 * W)
 
 
 def paper(master, x, y, w, h):
