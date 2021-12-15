@@ -7,6 +7,7 @@ from . import widget as GUIWidget
 from . import snake as GUISnake
 from . import back as GUIBack
 from ..data import logo as DataLogo
+from ..data import graphic as DataGraphic
 from ..parameter import color as ParameterColor
 
 W = GUIBasic.W
@@ -72,38 +73,27 @@ def main_page(master):
     game_main.root.update()
     master.current_page = game_main
 
-    GUIBasic.str_display(master=game_main.root, s='SNAKE 2',
-                         x=int(game_main.root.winfo_width() * 0.4) - W,
-                         y=W * 2,
-                         w=W / 30 * 10, color=ParameterColor.snake_logo)
+    GUIBasic.graphic_display(game_main.root, DataGraphic.christmas, W, W, W)
+
+    GUIBasic.str_middle(master=game_main.root, s='SNAKE',
+                        x=20 * W, y=3 * W, width=3 * W, height=2 * W,
+                        w=0.1 * W, color='purple')
 
     button_single = tkinter.Button(game_main.root, text='', command=lambda: game_single(master))
-    button_single.place(x=int(game_main.root.winfo_width() * 0.4),
-                        y=int(game_main.root.winfo_height() * 0.4),
-                        width=int(game_main.root.winfo_width() * 0.2),
-                        height=int(game_main.root.winfo_height() * 0.1))
+    button_single.place(x=19.25 * W, y=6.5 * W, width=4.5 * W, height=1 * W)
 
     GUIBasic.str_middle(master=game_main.root, s='SINGLE MODE',
-                        x=int(game_main.root.winfo_width() * 0.4),
-                        y=int(game_main.root.winfo_height() * 0.4),
-                        width=int(game_main.root.winfo_width() * 0.2),
-                        height=int(game_main.root.winfo_height() * 0.1),
-                        w=W / 30 * 4.5, color=ParameterColor.single_theme)
+                        x=19.25 * W, y=6.5 * W, width=4.5 * W, height=1 * W,
+                        w=0.08 * W, color=ParameterColor.single_theme)
 
     button_level = tkinter.Button(game_main.root, text='', command=lambda: game_level_mode(master))
-    button_level.place(x=int(game_main.root.winfo_width() * 0.4),
-                       y=int(game_main.root.winfo_height() * 0.5),
-                       width=int(game_main.root.winfo_width() * 0.2),
-                       height=int(game_main.root.winfo_height() * 0.1))
+    button_level.place(x=19.25 * W, y=9.5 * W, width=4.5 * W, height=1 * W)
 
     GUIBasic.str_middle(master=game_main.root, s='LEVEL MODE',
-                        x=int(game_main.root.winfo_width() * 0.4),
-                        y=int(game_main.root.winfo_height() * 0.5),
-                        width=int(game_main.root.winfo_width() * 0.2),
-                        height=int(game_main.root.winfo_height() * 0.1),
-                        w=W / 30 * 4.5, color=ParameterColor.level_theme)
+                        x=19.25 * W, y=9.5 * W, width=4.5 * W, height=1 * W,
+                        w=0.08 * W, color=ParameterColor.level_theme)
 
-    logo_info = DataLogo.logo_info
+    '''logo_info = DataLogo.logo_info
 
     w = 0.2 * W
 
@@ -114,7 +104,7 @@ def main_page(master):
     color = ParameterColor.mokey_logo_colors
     for x in logo_info:
         block = tkinter.Label(logo_board, bg=color[random.randint(0, len(color) - 1)])
-        block.place(x=x[0] * w, y=x[1] * w, width=w, height=w)
+        block.place(x=x[0] * w, y=x[1] * w, width=w, height=w)'''
 
 
 def game_single(master):

@@ -138,3 +138,21 @@ def graphic_display(master, data, x, y, w):
         pixel.place(x=x + unit[0] * w, y=y + unit[1] * w, width=w, height=w)
         obj_list.append(pixel)
     return obj_list
+
+
+# Sub data can contain in data.
+def graphic_display2(master, data, x, y, w):
+    return graphic_display_core(master, data, x, y, w * 2)
+
+
+def graphic_display_core(master, data, x, y, w):
+    if type(data[0]) != list:  # Boundary condition
+        pixel = tkinter.Label(master, bg=data[2])
+        pixel.place(x=x + data[0] * w, y=y + data[1] * w, width=w, height=w)
+        return [pixel]
+    else:
+        obj_list = []
+        for unit in data:
+            rtn = graphic_display_core(master, unit, x, y, w / 2)
+            obj_list += rtn
+        return obj_list
