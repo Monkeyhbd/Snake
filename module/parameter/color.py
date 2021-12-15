@@ -15,4 +15,4 @@ exit_win = 'red'
 exit_fail = 'green'
 
 snake_logo = 'purple'
-mokey_logo_colors = ['red', 'orange', 'green', 'blue', 'purple']
+mokey_logo_colors = ['LimeGreen', 'DeepSkyBlue', 'blue', 'HotPink', 'BlueViolet']

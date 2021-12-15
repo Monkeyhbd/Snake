@@ -129,3 +129,12 @@ def str_middle(master, s, x, y, width, height, w, color=ParameterColor.default):
     str_y = y + 0.5 * height - 0.5 * str_height
     rtn = str_display(master, s, str_x, str_y, w, color)
     return rtn
+
+
+def graphic_display(master, data, x, y, w):
+    obj_list = []
+    for unit in data:
+        pixel = tkinter.Label(master, bg=unit[2])
+        pixel.place(x=x + unit[0] * w, y=y + unit[1] * w, width=w, height=w)
+        obj_list.append(pixel)
+    return obj_list
