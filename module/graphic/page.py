@@ -80,38 +80,69 @@ def main_page(master):
                         x=20 * W, y=2.75 * W, width=3 * W, height=2 * W,
                         w=0.1 * W, color=ParameterColor.snake_logo, option='above')
 
-    button_single = tkinter.Button(game_main.root, text='', command=lambda: game_single(master))
-    button_single.place(x=19.25 * W, y=6.5 * W, width=4.5 * W, height=1 * W)
+    f11 = tkinter.Label(game_main.root, bg='LimeGreen')
+    f11.place(x=20 * W, y=5 * W, width=3 * W, height=1 * W)
+    f12 = tkinter.Label(game_main.root, bg='LimeGreen')
+    f12.place(x=19 * W, y=6 * W, width=5 * W, height=1 * W)
+    f13 = tkinter.Label(game_main.root, bg='LimeGreen')
+    f13.place(x=18 * W, y=7 * W, width=7 * W, height=1 * W)
+
+    def f1_enter(_):
+        for f1 in [f11, f12, f13]:
+            f1['bg'] = 'SpringGreen'
+
+    def f1_leave(_):
+        for f1 in [f11, f12, f13]:
+            f1['bg'] = 'LimeGreen'
+
+    def f1_click(_):
+        game_single(master)
+
+    for f in [f11, f12, f13]:
+        f.bind('<Enter>', f1_enter)
+        f.bind('<Leave>', f1_leave)
+        f.bind('<Button-1>', f1_click)
+
+    # button_single = tkinter.Button(game_main.root, text='', command=lambda: game_single(master))
+    # button_single.place(x=19.25 * W, y=6.5 * W, width=4.5 * W, height=1 * W)
 
     GUIBasic.str_middle(master=game_main.root, s='SINGLE MODE',
                         x=19.25 * W, y=6.5 * W, width=4.5 * W, height=1 * W,
                         w=0.08 * W, color=ParameterColor.single_theme)
 
-    button_level = tkinter.Button(game_main.root, text='', command=lambda: game_level_mode(master))
-    button_level.place(x=19.25 * W, y=9.5 * W, width=4.5 * W, height=1 * W)
+    f21 = tkinter.Label(game_main.root, bg='ForestGreen')
+    f21.place(x=19 * W, y=8 * W, width=5 * W, height=1 * W)
+    f22 = tkinter.Label(game_main.root, bg='ForestGreen')
+    f22.place(x=18 * W, y=9 * W, width=7 * W, height=1 * W)
+    f23 = tkinter.Label(game_main.root, bg='ForestGreen')
+    f23.place(x=17 * W, y=10 * W, width=9 * W, height=1 * W)
+
+    def f2_enter(_):
+        for f2 in [f21, f22, f23]:
+            f2['bg'] = 'SpringGreen'
+
+    def f2_leave(_):
+        for f2 in [f21, f22, f23]:
+            f2['bg'] = 'ForestGreen'
+
+    def f2_click(_):
+        game_level_mode(master)
+
+    for f in [f21, f22, f23]:
+        f.bind('<Enter>', f2_enter)
+        f.bind('<Leave>', f2_leave)
+        f.bind('<Button-1>', f2_click)
+
+    # button_level = tkinter.Button(game_main.root, text='', command=lambda: game_level_mode(master))
+    # button_level.place(x=19.25 * W, y=9.5 * W, width=4.5 * W, height=1 * W)
 
     GUIBasic.str_middle(master=game_main.root, s='LEVEL MODE',
                         x=19.25 * W, y=9.5 * W, width=4.5 * W, height=1 * W,
-                        w=0.08 * W, color=ParameterColor.level_theme)
+                        w=0.12 * W, color=ParameterColor.level_theme, option='default')
 
-    # logo_label = tkinter.Label(game_main.root)
-    # logo_label.place(x=19 * W, y=12 * W, width=5 * W, height=1 * W)
     GUILogo.logo_middle(game_main.root,
                         x=19 * W, y=12.2 * W, width=5 * W, height=1 * W,
                         w=0.16 * W, colors=ParameterColor.mokey_logo_colors, option='above')
-
-    '''logo_info = DataLogo.logo_info
-
-    w = 0.2 * W
-
-    logo_board = tkinter.Canvas(master.current_page.root)
-    logo_board.place(x=0.5 * master.winfo_width() - 20 * w, y=master.winfo_height() - 20 * w,
-                     width=40 * w, height=20 * w)
-
-    color = ParameterColor.mokey_logo_colors
-    for x in logo_info:
-        block = tkinter.Label(logo_board, bg=color[random.randint(0, len(color) - 1)])
-        block.place(x=x[0] * w, y=x[1] * w, width=w, height=w)'''
 
 
 def game_single(master):
