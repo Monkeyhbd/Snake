@@ -6,6 +6,7 @@ from . import basic as GUIBasic
 from . import widget as GUIWidget
 from . import snake as GUISnake
 from . import back as GUIBack
+from . import logo as GUILogo
 from ..data import logo as DataLogo
 from ..data import graphic as DataGraphic
 from ..parameter import color as ParameterColor
@@ -92,6 +93,12 @@ def main_page(master):
     GUIBasic.str_middle(master=game_main.root, s='LEVEL MODE',
                         x=19.25 * W, y=9.5 * W, width=4.5 * W, height=1 * W,
                         w=0.08 * W, color=ParameterColor.level_theme)
+
+    # logo_label = tkinter.Label(game_main.root)
+    # logo_label.place(x=19 * W, y=12 * W, width=5 * W, height=1 * W)
+    GUILogo.logo_middle(game_main.root,
+                        x=19 * W, y=12 * W, width=5 * W, height=1 * W,
+                        w=0.15 * W, colors=ParameterColor.mokey_logo_colors, option='above')
 
     '''logo_info = DataLogo.logo_info
 

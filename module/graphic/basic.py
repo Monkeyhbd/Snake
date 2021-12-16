@@ -99,6 +99,7 @@ def wall_destroy(wall_dead_point, wall_list):
 
 
 def char_display(master, c, x, y, w, color=ParameterColor.default):
+    w = int(w)
     position_list = DataChar.char_dict[c][1:]
     obj_list = []
     for position in position_list:
