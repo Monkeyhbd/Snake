@@ -77,8 +77,8 @@ def main_page(master):
     GUIBasic.graphic_display(game_main.root, DataGraphic.christmas, W, W, W)
 
     GUIBasic.str_middle(master=game_main.root, s='SNAKE',
-                        x=20 * W, y=3 * W, width=3 * W, height=2 * W,
-                        w=0.1 * W, color='purple')
+                        x=20 * W, y=2.75 * W, width=3 * W, height=2 * W,
+                        w=0.1 * W, color=ParameterColor.snake_logo, option='above')
 
     button_single = tkinter.Button(game_main.root, text='', command=lambda: game_single(master))
     button_single.place(x=19.25 * W, y=6.5 * W, width=4.5 * W, height=1 * W)
@@ -97,8 +97,8 @@ def main_page(master):
     # logo_label = tkinter.Label(game_main.root)
     # logo_label.place(x=19 * W, y=12 * W, width=5 * W, height=1 * W)
     GUILogo.logo_middle(game_main.root,
-                        x=19 * W, y=12 * W, width=5 * W, height=1 * W,
-                        w=0.15 * W, colors=ParameterColor.mokey_logo_colors, option='above')
+                        x=19 * W, y=12.2 * W, width=5 * W, height=1 * W,
+                        w=0.16 * W, colors=ParameterColor.mokey_logo_colors, option='above')
 
     '''logo_info = DataLogo.logo_info
 
