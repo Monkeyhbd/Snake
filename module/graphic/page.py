@@ -106,9 +106,9 @@ def main_page(master):
     # button_single = tkinter.Button(game_main.root, text='', command=lambda: game_single(master))
     # button_single.place(x=19.25 * W, y=6.5 * W, width=4.5 * W, height=1 * W)
 
-    GUIBasic.str_middle(master=game_main.root, s='SINGLE MODE',
-                        x=19.25 * W, y=6.5 * W, width=4.5 * W, height=1 * W,
-                        w=0.08 * W, color=ParameterColor.single_theme)
+    GUIBasic.str_middle(master=game_main.root, s='SINGLE',
+                        x=19 * W, y=6 * W, width=5 * W, height=2 * W,
+                        w=0.14 * W, color=ParameterColor.single_theme, option='above')
 
     f21 = tkinter.Label(game_main.root, bg='ForestGreen')
     f21.place(x=19 * W, y=8 * W, width=5 * W, height=1 * W)
@@ -137,12 +137,12 @@ def main_page(master):
     # button_level.place(x=19.25 * W, y=9.5 * W, width=4.5 * W, height=1 * W)
 
     GUIBasic.str_middle(master=game_main.root, s='LEVEL MODE',
-                        x=19.25 * W, y=9.5 * W, width=4.5 * W, height=1 * W,
-                        w=0.12 * W, color=ParameterColor.level_theme, option='default')
+                        x=19 * W, y=9 * W, width=5 * W, height=2 * W,
+                        w=0.14 * W, color=ParameterColor.level_theme, option='above')
 
     GUILogo.logo_middle(game_main.root,
-                        x=19 * W, y=12.2 * W, width=5 * W, height=1 * W,
-                        w=0.16 * W, colors=ParameterColor.mokey_logo_colors, option='above')
+                        x=19 * W, y=12 * W, width=5 * W, height=2 * W,
+                        w=0.2 * W, colors=ParameterColor.mokey_logo_colors, option='above')
 
 
 def game_single(master):

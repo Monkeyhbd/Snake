@@ -1,4 +1,5 @@
 import tkinter
+import tkinter.font
 import time
 import threading
 import random
@@ -190,7 +191,8 @@ class Snake(threading.Thread):
             self.food = [random.randint(0, self.master.size[0] - 1) * W,
                          random.randint(0, self.master.size[1] - 1) * W]
         self.food.append(random.randint(1, 3))
-        food_label = tkinter.Label(self.master, text=self.food[2], fg='white', bg=ParameterColor.food)
+        food_label = tkinter.Label(self.master, text=self.food[2], fg='white', bg=ParameterColor.food,
+                                   font=tkinter.font.Font(size=int(2 * W ** 0.5)))
         food_label.place(x=self.food[0], y=self.food[1], width=W, height=W)
         self.food.append(food_label)
 

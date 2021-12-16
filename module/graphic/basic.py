@@ -109,9 +109,11 @@ def char_display(master, c, x, y, w, color=ParameterColor.default, option='defau
         if option == 'above':
             white = tkinter.Label(master, bg='white')
             boundary_width = int(0.15 * w)
+            if boundary_width < 1:
+                boundary_width = 1
             white.place(x=x + position[0] * w - boundary_width, y=y + position[1] * w - boundary_width,
                         width=w + 2 * boundary_width, height=w + 2 * boundary_width)
-            white.lower(block)
+            white.lower(obj_list[0])
             obj_list.append(white)
     return obj_list
 

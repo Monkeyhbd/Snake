@@ -18,8 +18,12 @@ def logo_flash(master, x, y, w, colors, idle, option='default'):
         obj_list.append(pixel)
         if option == 'above':
             white = tkinter.Label(master, bg='white')
-            white.place(x=x + unit[0] * w - 0.15 * w, y=y + unit[1] * w - 0.15 * w, width=1.3 * w, height=1.3 * w)
-            white.lower(pixel)
+            boundary_width = int(0.15 * w)
+            if boundary_width < 1:
+                boundary_width = 1
+            white.place(x=x + unit[0] * w - boundary_width, y=y + unit[1] * w - boundary_width,
+                        width=w + 2 * boundary_width, height=w + 2 * boundary_width)
+            white.lower(obj_list[0])
             obj_list.append(white)
         if idle > 0:
             master.update()
