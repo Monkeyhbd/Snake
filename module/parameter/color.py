@@ -16,3 +16,5 @@ exit_fail = 'green'
 
 snake_logo = 'orange'
 mokey_logo_colors = ['LimeGreen', 'DeepSkyBlue', 'blue', 'HotPink', 'BlueViolet']
+
+light_colors = ['orange', 'Fuchsia', 'HotPink', 'DeepPink', 'Cyan', 'DeepSkyBlue', 'Gold', 'red', 'Pink', 'DarkOrange']
