@@ -39,6 +39,10 @@ def clear_paper():
 
 def optimize_data():
     optimized = [[x[0], x[1], 1, 1, x[2]] for x in data]
+
+    def key_md(elem):
+        return elem[1] * 1000 + elem[0]
+    optimized.sort(key=key_md)
     flag = True
     while flag:
         flag = False
@@ -51,6 +55,20 @@ def optimize_data():
             optimized.remove([unit[0] + width, unit[1], 1, 1, unit[4]])
             width += 1
         optimized.append([unit[0], unit[1], width, 1, unit[4]])
+
+    flag = True
+    while flag:
+        flag = False
+        for unit in optimized:
+            if [unit[0], unit[1] + 1, unit[2], 1, unit[4]] in optimized:
+                flag = True
+                break
+        height = 0
+        while [unit[0], unit[1] + height, unit[2], 1, unit[4]] in optimized:
+            optimized.remove([unit[0], unit[1] + height, unit[2], 1, unit[4]])
+            height += 1
+        optimized.append([unit[0], unit[1], unit[2], height, unit[4]])
+
     return optimized
 
 

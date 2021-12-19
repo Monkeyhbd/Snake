@@ -99,7 +99,7 @@ class Application(tkinter.Tk):
                 max_x = unit[0]
             if unit[1] > max_y:
                 max_y = unit[1]
-            tkinter.Label(self.stage, bg=unit[2]).place(x=unit[0] * w, y=unit[1] * w, width=w, height=w)
+            tkinter.Button(self.stage, bg=unit[2]).place(x=unit[0] * w, y=unit[1] * w, width=w, height=w)
         self.stage.place(x=0, y=0, width=(max_x+1) * w, height=(max_y+1) * w)
         self.stage.update()
         self.geometry('{}x{}'.format((max_x+1) * w, (max_y+1) * w))
