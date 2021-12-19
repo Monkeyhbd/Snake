@@ -37,6 +37,23 @@ def clear_paper():
                 p.click()
 
 
+def optimize_data():
+    optimized = [[x[0], x[1], 1, 1, x[2]] for x in data]
+    flag = True
+    while flag:
+        flag = False
+        for unit in optimized:
+            if [unit[0] + 1, unit[1], 1, 1, unit[4]] in optimized:
+                flag = True
+                break
+        width = 0
+        while [unit[0] + width, unit[1], 1, 1, unit[4]] in optimized:
+            optimized.remove([unit[0] + width, unit[1], 1, 1, unit[4]])
+            width += 1
+        optimized.append([unit[0], unit[1], width, 1, unit[4]])
+    return optimized
+
+
 def menu(master):
     menu_bar = tkinter.Menu()
     master['menu'] = menu_bar
@@ -90,12 +107,22 @@ def main_menu(master):
     current_x += 0.2 * W + 6 * W
 
     def view_command():
+        print(data)
         view_window = ToolView.Application('Editing', data, W)
         view_window.display()
         view_window.mainloop()
     view_button = tkinter.Button(bar, text='View', command=view_command)
     view_button.place(x=current_x + 0.2 * W, y=0.2 * W, width=2 * W, height=1.4 * W)
     current_x += 0.2 * W + 2 * W
+
+    def view_turbo_command():
+        print(optimize_data())
+        view_window = ToolView.Application('Editing', optimize_data(), W)
+        view_window.display_turbo()
+        view_window.mainloop()
+    view_turbo_button = tkinter.Button(bar, text='View Turbo', command=view_turbo_command)
+    view_turbo_button.place(x=current_x + 0.2 * W, y=0.2 * W, width=4 * W, height=1.4 * W)
+    current_x += 0.2 * W + 4 * W
 
 
 def paper(master, x, y, w, h):

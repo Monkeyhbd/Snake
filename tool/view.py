@@ -107,6 +107,25 @@ class Application(tkinter.Tk):
         print("len(data) = {}.".format(len(self.data)), end=' ')
         print("display use {}s.".format(te - t0))
 
+    def display_turbo(self):
+        t0 = time.time()
+        self.stage = tkinter.Canvas(self)
+        w = self.w
+        max_x, max_y = 0, 0
+        for unit in self.data:
+            if unit[0] + unit[2] > max_x:
+                max_x = unit[0] + unit[2]
+            if unit[1] + unit[3] > max_y:
+                max_y = unit[1] + unit[3]
+            tkinter.Button(self.stage, bg=unit[4]).place(x=unit[0] * w, y=unit[1] * w,
+                                                         width=unit[2] * w, height=unit[3] * w)
+        self.stage.place(x=0, y=0, width=max_x * w, height=max_y * w)
+        self.stage.update()
+        self.geometry('{}x{}'.format(max_x * w, max_y * w))
+        te = time.time()
+        print("len(data) = {}.".format(len(self.data)), end=' ')
+        print("display use {}s.".format(te - t0))
+
 
 if __name__ == '__main__':
     lmy = Application('Christmas', christmas, 20)
