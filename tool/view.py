@@ -1,4 +1,5 @@
 import tkinter
+import time
 
 christmas = [[19, 18, 'SaddleBrown'], [20, 18, 'SaddleBrown'], [21, 18, 'SaddleBrown'], [21, 17, 'SaddleBrown'],
              [20, 17, 'SaddleBrown'], [19, 17, 'SaddleBrown'], [19, 16, 'SaddleBrown'], [20, 16, 'SaddleBrown'],
@@ -89,6 +90,7 @@ class Application(tkinter.Tk):
         self.stage = None
 
     def display(self):
+        t0 = time.time()
         self.stage = tkinter.Canvas(self)
         w = self.w
         max_x, max_y = 0, 0
@@ -99,7 +101,11 @@ class Application(tkinter.Tk):
                 max_y = unit[1]
             tkinter.Label(self.stage, bg=unit[2]).place(x=unit[0] * w, y=unit[1] * w, width=w, height=w)
         self.stage.place(x=0, y=0, width=(max_x+1) * w, height=(max_y+1) * w)
+        self.stage.update()
         self.geometry('{}x{}'.format((max_x+1) * w, (max_y+1) * w))
+        te = time.time()
+        print("len(data) = {}.".format(len(self.data)), end=' ')
+        print("display use {}s.".format(te - t0))
 
 
 if __name__ == '__main__':
