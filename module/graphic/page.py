@@ -75,7 +75,7 @@ def main_page(master):
     game_main.root.update()
     master.current_page = game_main
 
-    GUIBasic.graphic_display(game_main.root, DataGraphic.christmas, W, W, W)
+    GUIBasic.graphic_display_turbo(game_main.root, DataGraphic.christmas_optimized, W, W, W)
 
     GUIBasic.str_middle(master=game_main.root, s='SNAKE',
                         x=20 * W, y=2.75 * W, width=3 * W, height=2 * W,

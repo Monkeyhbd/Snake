@@ -150,6 +150,15 @@ def graphic_display(master, data, x, y, w):
     return obj_list
 
 
+def graphic_display_turbo(master, data, x, y, w):
+    obj_list = []
+    for unit in data:
+        pixel = tkinter.Label(master, bg=unit[4])
+        pixel.place(x=x + unit[0] * w, y=y + unit[1] * w, width=unit[2] * w, height=unit[3] * w)
+        obj_list.append(pixel)
+    return obj_list
+
+
 # Sub data can contain in data.
 def graphic_display2(master, data, x, y, w):
     return graphic_display_core(master, data, x, y, w * 2)
