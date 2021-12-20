@@ -145,12 +145,14 @@ def main_page(master):
                         x=19 * W, y=12 * W, width=5 * W, height=2 * W,
                         w=0.2 * W, colors=ParameterColor.mokey_logo_colors, option='above')
 
-    GUILight.light_display(game_main.root, x=18, y=11, width=7, height=0.8,
-                           light_width_range=[2, 2.5], idle_range=[5, 8])
-    GUILight.light_display(game_main.root, x=19, y=8, width=5, height=0.7,
-                           light_width_range=[2, 2.5], idle_range=[4, 7])
-    GUILight.light_display(game_main.root, x=20, y=5, width=3, height=0.6,
-                           light_width_range=[1.8, 2.2], idle_range=[3, 5])
+    light1 = GUILight.light_display(game_main.root, x=18, y=11, width=7, height=0.8,
+                                    light_width_range=[2, 2.5], idle_range=[5, 8])
+    light2 = GUILight.light_display(game_main.root, x=19, y=8, width=5, height=0.7,
+                                    light_width_range=[2, 2.5], idle_range=[4, 7])
+    light3 = GUILight.light_display(game_main.root, x=20, y=5, width=3, height=0.6,
+                                    light_width_range=[1.8, 2.2], idle_range=[3, 5])
+
+    GUILight.light_thread_create(light1 + light2 + light3)
 
 
 def game_single(master):
