@@ -41,6 +41,9 @@ def level_back_create(master, board):
         door1 = return_obj['door1']
         door2 = return_obj['door2']
 
+        progress_bar = GUIWidget.progress_bar_init(master.current_page.root)
+        progress_bar.val_sum = 30
+
         GUIWidget.level_init(master.current_page.root, level_n)
         obj_list = GUIBasic.str_display(master=master.current_page.root, s='LEVEL ' + str(level_n),
                                         x=int(master.current_page.root.winfo_width() * 0.4) + W * 2,
@@ -51,10 +54,10 @@ def level_back_create(master, board):
 
         GUIBasic.wall_display(board, DataWall.level_box[level_n-1], ParameterColor.wall, wall_dead_point, wall_list)
 
-        monkeyhbd = GUISnake.Snake(board, 1, 10, 15,
+        monkeyhbd = GUISnake.Snake(board, 1, 10, 5,
                                    ParameterColor.snake_head, ParameterColor.snake_body,
                                    int(W / 5), master.len_label2,
-                                   master.fps_label2, wall_dead_point)
+                                   master.fps_label2, wall_dead_point, progress_bar)
         GUIWidget.panel_init(master, monkeyhbd)
         monkeyhbd.level = level_n
         monkeyhbd.setDaemon(True)

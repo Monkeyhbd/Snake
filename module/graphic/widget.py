@@ -5,6 +5,7 @@ import random
 
 from . import basic as GUIBasic
 from . import page as GUIPage
+from . import progressBar as GUIProgressBar
 from ..data import logo as DataLogo
 from ..parameter import color as ParameterColor
 
@@ -207,3 +208,11 @@ def panel_init(master, snake):
     master.bind('<Right>', snake_change_next_way)
 
     master.bind('<space>', suspend_continue_event)
+
+
+def progress_bar_init(master):
+    progress_bar = GUIProgressBar.ProgressBar(master, x=master.winfo_width() * 0.5 - 2.5 * W, y=0.25 * W,
+                                              width=5 * W, height=0.5 * W,
+                                              color_sum='white', color_act='red')
+    progress_bar.display()
+    return progress_bar

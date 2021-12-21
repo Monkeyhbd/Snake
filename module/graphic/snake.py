@@ -18,7 +18,7 @@ BAD = 11
 
 class Snake(threading.Thread):
     def __init__(self, master, x, y, n, head_color='black', body_color='red', step=2, len_label2=None, fps_label2=None,
-                 wall_dead_point=[]):
+                 wall_dead_point=[], progress_bar=None):
         threading.Thread.__init__(self)
         self.master = master
         self.head = [x * W, y * W]
@@ -42,6 +42,8 @@ class Snake(threading.Thread):
         self.len_label2 = len_label2
         self.fps_label2 = fps_label2
         self.wall_dead_point = wall_dead_point
+
+        self.progress_bar = progress_bar  # Level mode
 
         self.body_show()
         self.feed()
@@ -181,6 +183,10 @@ class Snake(threading.Thread):
         self.point = GUIBasic.extend(self.point, self.point_history, self.food[2])
         self.len += self.food[2]
         self.len_label2['text'] = self.len
+        if self.progress_bar is not None:
+            self.progress_bar.update(self.len / self.progress_bar.val_sum)
+            if self.len >= self.progress_bar.val_sum:
+                self.progress_bar.label_act['bg'] = 'Chartreuse'
         self.food[3].destroy()
         self.feed()
 
@@ -190,7 +196,7 @@ class Snake(threading.Thread):
         while self.food in self.point_body + self.wall_dead_point:
             self.food = [random.randint(0, self.master.size[0] - 1) * W,
                          random.randint(0, self.master.size[1] - 1) * W]
-        self.food.append(random.randint(1, 3))
+        self.food.append(random.randint(1, 5))
         food_label = tkinter.Label(self.master, text=self.food[2], fg='white', bg=ParameterColor.food,
                                    font=tkinter.font.Font(size=int(2 * W ** 0.5)))
         food_label.place(x=self.food[0], y=self.food[1], width=W, height=W)
@@ -199,6 +205,8 @@ class Snake(threading.Thread):
     def play(self):
         self.condition = RUN
         self.len_label2['text'] = self.len
+        if self.progress_bar is not None:
+            self.progress_bar.update(self.len / self.progress_bar.val_sum)
 
         while True:
 
