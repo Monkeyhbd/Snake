@@ -6,9 +6,12 @@
 
 这是一个由Python编写，使用Tkinter图形接口实现的贪吃蛇游戏，支持Windows，Linux和MacOS。
 
-## 展示
+## 发行版
 
-[视频链接](https://share.plvideo.cn/front/video/preview?vid=0826dfb910a4b4e2783bd7767b09f5fc_0)
+- Snake 2.3.0 Christmas [视频链接](https://share.plvideo.cn/front/video/preview?vid=0826dfb910cddb69a7b7b3b9d0da48d7_0)
+- Snake 2.2.1 [视频链接](https://share.plvideo.cn/front/video/preview?vid=0826dfb910a4b4e2783bd7767b09f5fc_0)
+- Snake 2.2.0 [视频链接](https://share.plvideo.cn/front/video/preview?vid=0826dfb91093f4189847f69f6be5fd88_0)
+- Snake 2.1 [视频链接](https://share.plvideo.cn/front/video/preview?vid=0826dfb9105d3ca2e6f765229832e407_0)
 
 ## 已实现的目标
 
@@ -19,7 +22,7 @@
 
 ## 实现中的目标
 
-- 闯关模式数据更新
+- 重构 Version 2.x --> Version 3.x
 
 ## 待实现的目标
 
