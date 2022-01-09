@@ -25,7 +25,6 @@ def char_display(master, c, x, y, w, color, option='default'):
 
 
 def str_one_by_one(master, s, x, y, w, color, idle, option='default'):
-    w = int(w)
     obj_list = []
     for c in s:
         obj_list += char_display(master, c, x, y, w, color, option)
@@ -36,7 +35,6 @@ def str_one_by_one(master, s, x, y, w, color, idle, option='default'):
 
 
 def str_display(master, s, x, y, w, color, option='default'):
-    w = int(w)
     obj_list = []
     for c in s:
         obj_list += char_display(master, c, x, y, w, color, option)
@@ -46,7 +44,6 @@ def str_display(master, s, x, y, w, color, option='default'):
 
 # Display s in the middle of an area(x, y, width, height).
 def str_middle(master, s, x, y, width, height, w, color, option='default'):
-    w = int(w)
     str_width = 0
     for c in s:
         str_width += (DataChar.char_dict[c][0] + 1) * w

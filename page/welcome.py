@@ -11,7 +11,7 @@ class Page(PageDemo.Page):
         PageDemo.Page.__init__(self, master=master)
 
     def build(self):
-        w = 16
+        w = 12
         board = tkinter.Canvas(self)
         board.place(x=self.winfo_width() / 2 - 12.5 * w, y=self.winfo_height() / 2 - 5 * w,
                     width=25 * w, height=10 * w)
