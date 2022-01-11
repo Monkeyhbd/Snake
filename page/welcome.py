@@ -15,17 +15,12 @@ class Page(PageDemo.Page):
     def build(self):
         w = 12
         board = tkinter.Canvas(self)
-        board.place(x=self.winfo_width() / 2 - 12.5 * w, y=self.winfo_height() / 2 - 5 * w,
-                    width=25 * w, height=10 * w)
+        board.place(relx=0.5, rely=0.5, width=25 * w, height=10 * w, anchor='center')
 
         logo = tkinter.Canvas(board)
         logo.place(x=0, y=0, width=25 * w, height=6 * w)
-        colors = DataTheme.mokey_logo_colors
-        for unit in DataLogo.mokey:
-            block = tkinter.Label(logo, bg=colors[random.randint(0, len(colors) - 1)])
-            block.place(x=unit[0] * w, y=unit[1] * w, width=w, height=w)
-            time.sleep(0.03)
-            logo.update()
+        WidgetPixel.logo_flash(master=logo, x=0, y=0, w=w, logo_info=DataLogo.mokey, colors=DataTheme.mokey_logo_colors,
+                               idle=0.03, option='default')
 
         slogan = tkinter.Canvas(board)
         slogan.place(x=0, y=6.8 * w, width=25 * w, height=3.2 * w)

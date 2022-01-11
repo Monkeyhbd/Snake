@@ -1,8 +1,5 @@
-import _tkinter
 import tkinter
 import random
-import threading
-import time
 
 from data import theme as DataTheme
 
@@ -27,22 +24,3 @@ def light_display(master, x, y, width, height, light_width_range, idle_range) ->
         obj_list.append(lb)
         xx += W / 10 * 0.01 * random.uniform(idle_range[0] * 100, idle_range[1] * 100)
     return obj_list
-
-
-def light_thread_create(light_obj_list):
-    colors = DataTheme.light_colors
-    num_of_color = len(colors)
-
-    def md():
-        while True:
-            try:
-                for light in light_obj_list:
-                    light['bg'] = colors[random.randint(0, num_of_color - 1)]
-                time.sleep(1)
-            except _tkinter.TclError:
-                break
-
-    light_thread = threading.Thread()
-    light_thread.run = md
-    light_thread.setDaemon(True)
-    light_thread.start()

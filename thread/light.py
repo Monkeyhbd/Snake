@@ -23,22 +23,3 @@ class Flash(threading.Thread):
                 time.sleep(1)
             except _tkinter.TclError:
                 break
-
-
-def light_thread_create(light_obj_list):
-    colors = DataTheme.light_colors
-    num_of_color = len(colors)
-
-    def md():
-        while True:
-            try:
-                for light in light_obj_list:
-                    light['bg'] = colors[random.randint(0, num_of_color - 1)]
-                time.sleep(1)
-            except _tkinter.TclError:
-                break
-
-    light_thread = threading.Thread()
-    light_thread.run = md
-    light_thread.setDaemon(True)
-    light_thread.start()
