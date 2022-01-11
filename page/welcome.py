@@ -1,8 +1,10 @@
 import tkinter
 import time
+import random
 
 from . import demo as PageDemo
 from data import logo as DataLogo
+from data import theme as DataTheme
 from widget import pixel as WidgetPixel
 
 
@@ -15,16 +17,20 @@ class Page(PageDemo.Page):
         board = tkinter.Canvas(self)
         board.place(x=self.winfo_width() / 2 - 12.5 * w, y=self.winfo_height() / 2 - 5 * w,
                     width=25 * w, height=10 * w)
+
         logo = tkinter.Canvas(board)
         logo.place(x=0, y=0, width=25 * w, height=6 * w)
+        colors = DataTheme.mokey_logo_colors
         for unit in DataLogo.mokey:
-            tkinter.Label(logo, bg='black').place(x=unit[0] * w, y=unit[1] * w, width=w, height=w)
+            block = tkinter.Label(logo, bg=colors[random.randint(0, len(colors) - 1)])
+            block.place(x=unit[0] * w, y=unit[1] * w, width=w, height=w)
             time.sleep(0.03)
             logo.update()
+
         slogan = tkinter.Canvas(board)
         slogan.place(x=0, y=6.8 * w, width=25 * w, height=3.2 * w)
         WidgetPixel.str_one_by_one(master=slogan, s="GITEE.COM / MONKEYHBD", x=0, y=0, w=0.25 * w,
-                                   color='Black', idle=0.03)
+                                   color='Black', idle=0.01)
 
 
 page_instance: Page
