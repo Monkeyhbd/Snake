@@ -1,3 +1,4 @@
+import threading
 import tkinter
 
 
@@ -5,6 +6,8 @@ class Page(tkinter.Canvas):
     INIT = 0
     LOADED = 1
     DESTROYED = -1
+
+    threads: list[threading.Thread] = []
 
     def __init__(self, master: tkinter.Tk, bg='SystemButtonFace'):
         tkinter.Canvas.__init__(self, master, bg=bg)
@@ -20,9 +23,14 @@ class Page(tkinter.Canvas):
 
         pass
 
+    def start(self):
+        for td in self.threads:
+            td.start()
+
     def display(self):
         self.master.update()
         self.place(x=0, y=0, width=self.master.winfo_width(), height=self.master.winfo_height())
         self.update()
-        self.build()  # Content may call self.winfo_width, so self place first.
+        self.build()  # Content may call self.winfo_width, so place self first.
         self.condition = self.LOADED
+        self.start()
