@@ -1,6 +1,4 @@
 import tkinter
-import time
-import random
 
 from . import demo as PageDemo
 from data import logo as DataLogo
