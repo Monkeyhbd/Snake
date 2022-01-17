@@ -98,6 +98,7 @@ class Snake(threading.Thread):
                  wall_dead_point=[],
                  progress_bar=None):
         threading.Thread.__init__(self)
+        self.setDaemon(True)
         self.master = master
         self.head = [x * w, y * w]
         self.point = [self.head, [self.head[0] - length * w, self.head[1]]]  # [头，转弯节点，转弯节点 ... 末位位置]，len >= 2

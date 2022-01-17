@@ -4,7 +4,9 @@ from . import demo as PageDemo
 from data import theme as DataTheme
 from widget import board as WidgetBoard
 from widget import bar as WidgetBar
-
+from widget import panel as WidgetPanel
+from avatar import demo as AvatarDemo
+from thread import single_back as ThreadSingleBack
 
 W = 20
 
@@ -35,14 +37,17 @@ class Page(PageDemo.Page):
         board = WidgetBoard.board_init(self, 20, 40)
         return_obj = WidgetBar.info_init(self)
 
-        """monkeyhbd = GUISnake.Snake(board, 1, 10, 15,
-                                   DataTheme.snake_head, DataTheme.snake_body,
-                                   int(W / 5), return_obj['len_label2'], return_obj['fps_label2'], [])
-        GUIWidget.panel_init(master, monkeyhbd)
-        monkeyhbd.setDaemon(True)
-        monkeyhbd.start()
+        monkeyhbd = AvatarDemo.Snake(master=board, x=1, y=10, w=W, length=5, step=int(W / 5),
+                                     head_color=DataTheme.snake_head, body_color=DataTheme.snake_body,
+                                     len_label2=return_obj['len_label2'], fps_label2=return_obj['fps_label2'],
+                                     wall_dead_point=[])
 
-        GUIBack.single_back_create(master, monkeyhbd)"""
+        WidgetPanel.panel_init(self.master, monkeyhbd)
+
+        monitor = ThreadSingleBack.SnakeMonitor(self, monkeyhbd)
+
+        self.threads.append(monkeyhbd)
+        self.threads.append(monitor)
 
 
 page_instance: Page
