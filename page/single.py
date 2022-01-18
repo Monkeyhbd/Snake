@@ -14,6 +14,8 @@ W = 20
 class Page(PageDemo.Page):
     def __init__(self, master):
         PageDemo.Page.__init__(self, master=master)
+        self.board = None
+        self.return_obj = None
 
     def build(self):
         border_color = DataTheme.single_theme
@@ -34,20 +36,20 @@ class Page(PageDemo.Page):
                                                    width=W,
                                                    height=self.winfo_height() - 2 * W)
 
-        board = WidgetBoard.board_init(self, 20, 40)
-        return_obj = WidgetBar.info_init(self)
+        self.board = WidgetBoard.board_init(self, 20, 40)
+        self.return_obj = WidgetBar.info_init(self)
 
-        monkeyhbd = AvatarDemo.Snake(master=board, x=1, y=10, w=W, length=5, step=int(W / 5),
+    def deploy(self):
+        monkeyhbd = AvatarDemo.Snake(master=self.board, x=1, y=10, w=W, length=5, step=int(W / 5),
                                      head_color=DataTheme.snake_head, body_color=DataTheme.snake_body,
-                                     len_label2=return_obj['len_label2'], fps_label2=return_obj['fps_label2'],
+                                     len_label2=self.return_obj['len_label2'], fps_label2=self.return_obj['fps_label2'],
                                      wall_dead_point=[])
 
         WidgetPanel.panel_init(self.master, monkeyhbd)
 
         monitor = ThreadSingleBack.SnakeMonitor(self, monkeyhbd)
 
-        self.threads.append(monkeyhbd)
-        self.threads.append(monitor)
+        self.threads = [monkeyhbd, monitor]
 
 
 page_instance: Page

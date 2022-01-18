@@ -23,6 +23,12 @@ class Page(tkinter.Canvas):
 
         pass
 
+    def deploy(self):
+        """ Page's thread write in here.
+
+        Threads should be append to self.threads. """
+        pass
+
     def start(self):
         for td in self.threads:
             td.start()
@@ -33,4 +39,5 @@ class Page(tkinter.Canvas):
         self.update()
         self.build()  # Content may call self.winfo_width, so place self first.
         self.condition = self.LOADED
+        self.deploy()
         self.start()
