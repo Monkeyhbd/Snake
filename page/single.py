@@ -36,14 +36,14 @@ class Page(PageDemo.Page):
                                                    width=W,
                                                    height=self.winfo_height() - 2 * W)
 
-        self.board = WidgetBoard.board_init(self, 20, 40)
+        self.board = WidgetBoard.Board(self, 20, 40)
+        self.board.display()
         self.return_obj = WidgetBar.info_init(self)
 
     def deploy(self):
         monkeyhbd = AvatarDemo.Snake(master=self.board, x=1, y=10, w=W, length=5, step=int(W / 5),
                                      head_color=DataTheme.snake_head, body_color=DataTheme.snake_body,
-                                     len_label2=self.return_obj['len_label2'], fps_label2=self.return_obj['fps_label2'],
-                                     wall_dead_point=[])
+                                     len_label2=self.return_obj['len_label2'], fps_label2=self.return_obj['fps_label2'])
 
         WidgetPanel.panel_init(self.master, monkeyhbd)
 

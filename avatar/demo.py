@@ -84,6 +84,8 @@ class Snake(threading.Thread):
     END = 3
     BAD = 11
 
+    obstacle: list[list[int, int]] = []  # Board's border and wall.
+
     def __init__(self,
                  master: "master is a board",
                  x: int = 0,
@@ -95,7 +97,6 @@ class Snake(threading.Thread):
                  body_color: "the color of snake's body" = 'red',
                  len_label2=None,
                  fps_label2=None,
-                 wall_dead_point=[],
                  progress_bar=None):
         threading.Thread.__init__(self)
         self.setDaemon(True)
@@ -121,7 +122,7 @@ class Snake(threading.Thread):
 
         self.len_label2 = len_label2
         self.fps_label2 = fps_label2
-        self.wall_dead_point = wall_dead_point
+        self.obstacle += master.border
 
         self.progress_bar = progress_bar  # Level mode
 
@@ -230,7 +231,8 @@ class Snake(threading.Thread):
     def check(self):  # Check if food or wall in front of snake.
         if self.head[0] % self.w == 0 and self.head[1] % self.w == 0:
             way = self.way
-            point_dead = self.point_body + self.master.board_dead_point + self.wall_dead_point
+            point_dead = self.point_body + self.obstacle
+            # point_dead = self.point_body + self.master.board_dead_point + self.wall_dead_point
             if way == 'N':
                 if [self.head[0], self.head[1] - self.w] in point_dead:
                     self.condition = self.END
@@ -273,7 +275,7 @@ class Snake(threading.Thread):
     def feed(self):
         self.food = [random.randint(0, self.master.size[0] - 1) * self.w,
                      random.randint(0, self.master.size[1] - 1) * self.w]
-        while self.food in self.point_body + self.wall_dead_point:
+        while self.food in self.point_body + self.obstacle:
             self.food = [random.randint(0, self.master.size[0] - 1) * self.w,
                          random.randint(0, self.master.size[1] - 1) * self.w]
         self.food.append(random.randint(1, 5))
