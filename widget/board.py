@@ -24,7 +24,8 @@ def board_init(master, h, w):
 
 
 class Board(tkinter.Canvas):
-    border = []
+    border: list[list[int, int]] = []
+    wall: list[list[int, int]] = []
 
     def __init__(self, master, h, w):
         tkinter.Canvas.__init__(self, master)

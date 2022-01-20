@@ -5,6 +5,7 @@ import threading
 import random
 
 from data import theme as DataTheme
+from widget import board as WidgetBoard
 
 
 # Display the Label of snake's body form place1 to place2, and return this Label object.
@@ -84,14 +85,12 @@ class Snake(threading.Thread):
     END = 3
     BAD = 11
 
-    obstacle: list[list[int, int]] = []  # Board's border and wall.
-
     body: list[tkinter.Label] = []  # [head_label, body_label, ...]
 
     food: list = []  # [x, y, n, food_label]
 
     def __init__(self,
-                 master: "master is a board",
+                 master: WidgetBoard.Board,
                  x: int = 0,
                  y: int = 0,
                  w: "the width of a block" = 20,
@@ -124,7 +123,8 @@ class Snake(threading.Thread):
 
         self.len_label2 = len_label2
         self.fps_label2 = fps_label2
-        self.obstacle += master.border
+        self.obstacle: list[list[int, int]] = master.border + master.wall
+        print(self.obstacle)
 
         self.progress_bar = progress_bar  # Level mode
 
