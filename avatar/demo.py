@@ -86,6 +86,10 @@ class Snake(threading.Thread):
 
     obstacle: list[list[int, int]] = []  # Board's border and wall.
 
+    body: list[tkinter.Label] = []  # [head_label, body_label, ...]
+
+    food: list = []  # [x, y, n, food_label]
+
     def __init__(self,
                  master: "master is a board",
                  x: int = 0,
@@ -105,8 +109,6 @@ class Snake(threading.Thread):
         self.point = [self.head, [self.head[0] - length * w, self.head[1]]]  # [头，转弯节点，转弯节点 ... 末位位置]，len >= 2
         self.point_history = [self.head, [0, self.head[1]], [-int(1000 * w), self.head[1]]]  # way = 'E'
         self.point_body = []  # 蛇身在棋盘上占据的点
-        self.food = []  # [x, y, n, food_label]
-        self.body = []  # [head_label, body_label, ...]
         self.w = w
         self.len = length
         self.head_color = head_color
