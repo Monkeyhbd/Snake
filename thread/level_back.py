@@ -44,6 +44,63 @@ def obj_destroy(obj_list):
         obj.destroy()
 
 
+def wait_len(snake: AvatarDemo.Snake, length: int) -> bool:  # length : expected length
+    while snake.condition != 3:
+        time.sleep(1)
+    if snake.len >= length and snake.head[1] == 9 * W and snake.head[0] >= 19 * W:
+        return True
+    else:
+        return False
+
+
+def level(page, level_n: int) -> bool:
+    wall_list = []
+
+    # level level_n
+    return_obj = WidgetDoor.door_init(page)
+    door1 = return_obj['door1']
+    door2 = return_obj['door2']
+
+    progress_bar = WidgetProgressBar.progress_bar_init(page)
+    progress_bar.val_sum = 30
+
+    level_init(page, level_n)
+    obj_list = WidgetPixel.str_display(master=page, s='LEVEL ' + str(level_n),
+                                       x=int(page.winfo_width() * 0.4) + W * 2,
+                                       y=int(page.winfo_height() * 0.4) + W * 2,
+                                       w=W / 30 * 4.5, color=DataTheme.level_tip)
+    time.sleep(1)
+    obj_destroy(obj_list)
+
+    wall_display(page.board, DataWall.level_box[level_n - 1], DataTheme.wall, page.board.wall, wall_list)
+
+    monkeyhbd = AvatarDemo.Snake(master=page.board, x=1, y=10, length=5, step=int(W / 5),
+                                 head_color=DataTheme.snake_head, body_color=DataTheme.snake_body,
+                                 len_label2=page.len_label2, fps_label2=page.fps_label2,
+                                 progress_bar=progress_bar)
+    WidgetPanel.panel_init(page.master, monkeyhbd)
+    monkeyhbd.level = level_n
+    monkeyhbd.start()
+
+    WidgetDoor.door_thread_create(door1, door2, monkeyhbd)
+    result = wait_len(monkeyhbd, 30)
+    if not result:
+        print("Dead")
+        # GUIWidget.exit_init(master.current_page.root, monkeyhbd, 'level')
+        return False
+    else:
+        print('AC')
+        if level_n == len(DataWall.level_box):  # Last level
+            print("Win")
+
+            # GUIWidget.exit_init(master.current_page.root, monkeyhbd, 'level_win')
+        else:
+            monkeyhbd.body_destroy()
+            monkeyhbd.food[3].destroy()
+            wall_destroy(page.board.wall, wall_list)
+        return True
+
+
 def level_back_create(page, board: WidgetBoard.Board):
     def wait_len(monkeyhbd, n):  # n : expected length
         while monkeyhbd.condition != 3:
@@ -98,7 +155,6 @@ def level_back_create(page, board: WidgetBoard.Board):
                 monkeyhbd.body_destroy()
                 monkeyhbd.food[3].destroy()
                 wall_destroy(board.wall, wall_list)
-                print(board.wall)
             return 1
 
     def md():
@@ -111,3 +167,16 @@ def level_back_create(page, board: WidgetBoard.Board):
     level_back.run = md
     level_back.setDaemon(True)
     level_back.start()
+
+
+class Back(threading.Thread):
+    def __init__(self, page):
+        threading.Thread.__init__(self)
+        self.setDaemon(True)
+        self.page = page
+
+    def run(self):
+        for level_n in range(1, len(DataWall.level_box) + 1):
+            rtn = level(self.page, level_n)
+            if rtn == 0:
+                break

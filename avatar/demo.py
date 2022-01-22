@@ -124,7 +124,6 @@ class Snake(threading.Thread):
         self.len_label2 = len_label2
         self.fps_label2 = fps_label2
         self.obstacle: list[list[int, int]] = master.border + master.wall
-        print(self.obstacle)
 
         self.progress_bar = progress_bar  # Level mode
 
