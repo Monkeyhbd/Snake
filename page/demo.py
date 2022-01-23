@@ -7,12 +7,16 @@ class Page(tkinter.Canvas):
     LOADED = 1
     DESTROYED = -1
 
-    threads: list[threading.Thread] = []
-
     def __init__(self, master: tkinter.Tk, bg='SystemButtonFace'):
         tkinter.Canvas.__init__(self, master, bg=bg)
         self.master = master
         self.condition = self.INIT
+        self.threads: list[threading.Thread] = []
+
+        try:  # Master is a Game Class
+            self.W = master.W
+        except AttributeError:
+            self.W = 20
 
     def build(self):
         """ Page's content write in here.
@@ -27,9 +31,12 @@ class Page(tkinter.Canvas):
         """ Page's thread write in here.
 
         Threads should be append to self.threads. """
+
         pass
 
     def start(self):
+        """ Start threads in self.threads. """
+
         for td in self.threads:
             td.start()
 

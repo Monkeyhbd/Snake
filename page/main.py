@@ -8,14 +8,13 @@ from widget import pixel as WidgetPixel
 from widget import light as WidgetLight
 from thread import light as ThreadLight
 
-W = 20
-
 
 class Page(PageDemo.Page):
     def __init__(self, master):
         PageDemo.Page.__init__(self, master=master)
 
     def custom_button(self):
+        W = self.W
         f11 = tkinter.Label(self, bg='LimeGreen')
         f11.place(x=20 * W, y=5 * W, width=3 * W, height=1 * W)
         f12 = tkinter.Label(self, bg='LimeGreen')
@@ -65,6 +64,7 @@ class Page(PageDemo.Page):
             f.bind('<Button-1>', f2_click)
 
     def build(self):
+        W = self.W
         WidgetPixel.graphic_display_turbo(self, DataGraphic.christmas_optimized, W, W, W)
 
         self.custom_button()
@@ -86,6 +86,7 @@ class Page(PageDemo.Page):
                                 w=0.2 * W, logo_info=DataLogo.logo_data, colors=DataTheme.mokey_logo_colors,
                                 option='above')
 
+        WidgetLight.W = self.W
         light1 = WidgetLight.light_display(self, x=18, y=11, width=7, height=0.8,
                                            light_width_range=[2, 2.5], idle_range=[5, 8])
         light2 = WidgetLight.light_display(self, x=19, y=8, width=5, height=0.7,

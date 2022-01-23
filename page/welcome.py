@@ -1,9 +1,13 @@
+import time
 import tkinter
 
 from . import demo as PageDemo
 from data import logo as DataLogo
 from data import theme as DataTheme
 from widget import pixel as WidgetPixel
+from application import demo as ApplicationDemo
+
+from page import main as PageMain
 
 
 class Page(PageDemo.Page):
@@ -11,7 +15,7 @@ class Page(PageDemo.Page):
         PageDemo.Page.__init__(self, master=master)
 
     def build(self):
-        w = 12
+        w = 0.6 * self.W
         board = tkinter.Canvas(self)
         board.place(relx=0.5, rely=0.5, width=25 * w, height=10 * w, anchor='center')
 
@@ -24,6 +28,12 @@ class Page(PageDemo.Page):
         slogan.place(x=0, y=6.8 * w, width=25 * w, height=3.2 * w)
         WidgetPixel.str_one_by_one(master=slogan, s="GITEE.COM / MONKEYHBD", x=0, y=0, w=0.25 * w,
                                    color='Black', idle=0.01)
+
+        if type(self.master) == ApplicationDemo.Game:
+            time.sleep(2)
+            self.destroy()
+            PageMain.init(self.master)
+            PageMain.display()
 
 
 page_instance: Page
