@@ -4,7 +4,8 @@ import tkinter
 
 class Page(tkinter.Canvas):
     INIT = 0
-    LOADED = 1
+    PRELOADED = 1
+    LOADED = 2
     DESTROYED = -1
 
     def __init__(self, master: tkinter.Tk, bg='SystemButtonFace'):
@@ -42,9 +43,18 @@ class Page(tkinter.Canvas):
 
     def display(self):
         self.master.update()
-        self.place(x=0, y=0, width=self.master.winfo_width(), height=self.master.winfo_height())
+        self.place(x=0, y=0, relwidth=1, relheight=1)
         self.update()
         self.build()  # Content may call self.winfo_width, so place self first.
         self.condition = self.LOADED
         self.deploy()
         self.start()
+
+    def hangup(self):
+        pass
+
+    def preload(self):
+        pass
+
+    def reload(self):
+        pass

@@ -8,19 +8,22 @@ from widget import pixel as WidgetPixel
 from widget import light as WidgetLight
 from thread import light as ThreadLight
 
+from page import single as PageSingle
+from page import level as PageLevel
+
 
 class Page(PageDemo.Page):
     def __init__(self, master):
         PageDemo.Page.__init__(self, master=master)
 
     def custom_button(self):
-        W = self.W
+        w = self.W
         f11 = tkinter.Label(self, bg='LimeGreen')
-        f11.place(x=20 * W, y=5 * W, width=3 * W, height=1 * W)
+        f11.place(x=20 * w, y=5 * w, width=3 * w, height=1 * w)
         f12 = tkinter.Label(self, bg='LimeGreen')
-        f12.place(x=19 * W, y=6 * W, width=5 * W, height=1 * W)
+        f12.place(x=19 * w, y=6 * w, width=5 * w, height=1 * w)
         f13 = tkinter.Label(self, bg='LimeGreen')
-        f13.place(x=18 * W, y=7 * W, width=7 * W, height=1 * W)
+        f13.place(x=18 * w, y=7 * w, width=7 * w, height=1 * w)
 
         def f1_enter(_):
             for f1 in [f11, f12, f13]:
@@ -31,7 +34,8 @@ class Page(PageDemo.Page):
                 f1['bg'] = 'LimeGreen'
 
         def f1_click(_):
-            pass
+            PageSingle.init(master=self.master)
+            PageSingle.display()
             # game_single(master)
 
         for f in [f11, f12, f13]:
@@ -40,11 +44,11 @@ class Page(PageDemo.Page):
             f.bind('<Button-1>', f1_click)
 
         f21 = tkinter.Label(self, bg='ForestGreen')
-        f21.place(x=19 * W, y=8 * W, width=5 * W, height=1 * W)
+        f21.place(x=19 * w, y=8 * w, width=5 * w, height=1 * w)
         f22 = tkinter.Label(self, bg='ForestGreen')
-        f22.place(x=18 * W, y=9 * W, width=7 * W, height=1 * W)
+        f22.place(x=18 * w, y=9 * w, width=7 * w, height=1 * w)
         f23 = tkinter.Label(self, bg='ForestGreen')
-        f23.place(x=17 * W, y=10 * W, width=9 * W, height=1 * W)
+        f23.place(x=17 * w, y=10 * w, width=9 * w, height=1 * w)
 
         def f2_enter(_):
             for f2 in [f21, f22, f23]:
@@ -55,7 +59,8 @@ class Page(PageDemo.Page):
                 f2['bg'] = 'ForestGreen'
 
         def f2_click(_):
-            pass
+            PageLevel.init(master=self.master)
+            PageLevel.display()
             # game_level_mode(master)
 
         for f in [f21, f22, f23]:
@@ -64,26 +69,26 @@ class Page(PageDemo.Page):
             f.bind('<Button-1>', f2_click)
 
     def build(self):
-        W = self.W
-        WidgetPixel.graphic_display_turbo(self, DataGraphic.christmas_optimized, W, W, W)
+        w = self.W
+        WidgetPixel.graphic_display_turbo(self, DataGraphic.christmas_optimized, w, w, w)
 
         self.custom_button()
 
         WidgetPixel.str_middle(master=self, s='SNAKE',
-                               x=20 * W, y=2.75 * W, width=3 * W, height=2 * W,
-                               w=0.1 * W, color=DataTheme.snake_logo, option='above')
+                               x=20 * w, y=2.75 * w, width=3 * w, height=2 * w,
+                               w=0.1 * w, color=DataTheme.snake_logo, option='default')
 
         WidgetPixel.str_middle(master=self, s='SINGLE',
-                               x=19 * W, y=6 * W, width=5 * W, height=2 * W,
-                               w=0.14 * W, color=DataTheme.single_theme, option='above')
+                               x=19 * w, y=6 * w, width=5 * w, height=2 * w,
+                               w=0.14 * w, color=DataTheme.single_theme, option='default')
 
         WidgetPixel.str_middle(master=self, s='LEVEL MODE',
-                               x=19 * W, y=9 * W, width=5 * W, height=2 * W,
-                               w=0.14 * W, color=DataTheme.level_theme, option='above')
+                               x=19 * w, y=9 * w, width=5 * w, height=2 * w,
+                               w=0.14 * w, color=DataTheme.level_theme, option='default')
 
         WidgetPixel.logo_middle(self,
-                                x=19 * W, y=12 * W, width=5 * W, height=2 * W,
-                                w=0.2 * W, logo_info=DataLogo.logo_data, colors=DataTheme.mokey_logo_colors,
+                                x=19 * w, y=12 * w, width=5 * w, height=2 * w,
+                                w=0.2 * w, logo_info=DataLogo.logo_data, colors=DataTheme.mokey_logo_colors,
                                 option='above')
 
         WidgetLight.W = self.W

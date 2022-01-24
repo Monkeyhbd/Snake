@@ -8,6 +8,8 @@ W = 20
 
 
 def door_init(master):
+    global W
+    W = master.W
     bg1 = tkinter.Label(master, bg='white')
     bg1.place(x=0, y=int(W * 11), width=W, height=W)
     door1 = tkinter.Label(master, bg=DataTheme.default)

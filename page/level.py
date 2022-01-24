@@ -6,8 +6,6 @@ from widget import bar as WidgetBar
 from data import theme as DataTheme
 from thread import level_back as ThreadLevelBack
 
-W = 20
-
 
 class Page(PageDemo.Page):
     def __init__(self, master):
@@ -17,23 +15,24 @@ class Page(PageDemo.Page):
         self.len_label2 = None
 
     def build(self):
+        w = self.W
         border_color = DataTheme.level_theme
         tkinter.Label(self, bg=border_color).place(x=0,
                                                    y=0,
                                                    width=self.winfo_width(),
-                                                   height=W)
+                                                   height=w)
         tkinter.Label(self, bg=border_color).place(x=0,
-                                                   y=self.winfo_height() - W,
+                                                   y=self.winfo_height() - w,
                                                    width=self.winfo_width(),
-                                                   height=W)
+                                                   height=w)
         tkinter.Label(self, bg=border_color).place(x=0,
-                                                   y=W,
-                                                   width=W,
-                                                   height=self.winfo_height() - 2 * W)
-        tkinter.Label(self, bg=border_color).place(x=self.winfo_width() - W,
-                                                   y=W,
-                                                   width=W,
-                                                   height=self.winfo_height() - 2 * W)
+                                                   y=w,
+                                                   width=w,
+                                                   height=self.winfo_height() - 2 * w)
+        tkinter.Label(self, bg=border_color).place(x=self.winfo_width() - w,
+                                                   y=w,
+                                                   width=w,
+                                                   height=self.winfo_height() - 2 * w)
 
         self.board = WidgetBoard.Board(self, 20, 40)
         self.board.display()

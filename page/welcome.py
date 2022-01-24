@@ -32,6 +32,7 @@ class Page(PageDemo.Page):
         if type(self.master) == ApplicationDemo.Game:
             time.sleep(2)
             self.destroy()
+            self.condition = self.DESTROYED
             PageMain.init(self.master)
             PageMain.display()
 
