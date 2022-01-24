@@ -9,7 +9,7 @@ class Game(tkinter.Tk):
         try:
             # 告诉 Windows 使用程序自身的dpi适配
             ctypes.windll.shcore.SetProcessDpiAwareness(1)
-        except AttributeError:
+        except AttributeError:  # Linux
             pass
 
         tkinter.Tk.__init__(self)

@@ -27,10 +27,10 @@ class Page(PageDemo.Page):
         slogan = tkinter.Canvas(board)
         slogan.place(x=0, y=6.8 * w, width=25 * w, height=3.2 * w)
         WidgetPixel.str_one_by_one(master=slogan, s="GITEE.COM / MONKEYHBD", x=0, y=0, w=0.25 * w,
-                                   color='Black', idle=0.01)
+                                   color='Black', idle=0.05)
 
         if type(self.master) == ApplicationDemo.Game:
-            time.sleep(2.5)
+            time.sleep(3)
             self.destroy()
             self.condition = self.DESTROYED
             PageMain.init(self.master)
