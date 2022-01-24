@@ -30,7 +30,7 @@ class Page(PageDemo.Page):
                                    color='Black', idle=0.01)
 
         if type(self.master) == ApplicationDemo.Game:
-            time.sleep(2)
+            time.sleep(2.5)
             self.destroy()
             self.condition = self.DESTROYED
             PageMain.init(self.master)

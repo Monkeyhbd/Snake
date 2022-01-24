@@ -1,7 +1,5 @@
 import tkinter
 
-W = 20
-
 
 class ProgressBar:
     def __init__(self, master, x, y, width, height, color_sum, color_act):
@@ -29,8 +27,9 @@ class ProgressBar:
 
 
 def progress_bar_init(master):
-    progress_bar = ProgressBar(master, x=master.winfo_width() * 0.5 - 2.5 * W, y=0.25 * W,
-                               width=5 * W, height=0.5 * W,
+    w = master.W
+    progress_bar = ProgressBar(master, x=master.winfo_width() * 0.5 - 2.5 * w, y=0.25 * w,
+                               width=5 * w, height=0.5 * w,
                                color_sum='white', color_act='red')
     progress_bar.display()
     return progress_bar
