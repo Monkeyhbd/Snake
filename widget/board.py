@@ -1,29 +1,7 @@
 import tkinter
 
 
-def board_init(master, h, w):
-    board_dead_point = []
-    board = tkinter.Canvas(master)
-    for a in range(h):
-        board_dead_point.append([-W, a * W])  # W
-        board_dead_point.append([w * W, a * W])  # E
-    for b in range(w):
-        board_dead_point.append([b * W, -W])  # N
-        board_dead_point.append([b * W, h * W])  # S
-    board.size = [w, h]
-    board.place(x=W, y=W, width=w * W, height=h * W)
-    for a in range(h):
-        for b in range(w):
-            if a % 2 - b % 2 == 0:
-                tkinter.Label(board, bg='white').place(x=b * W, y=a * W, width=W, height=W)
-    board.border = board_dead_point
-    return board
-
-
 class Board(tkinter.Canvas):
-    border: list[list[int, int]] = []
-    wall: list[list[int, int]] = []
-
     def __init__(self, master, h, w):
         tkinter.Canvas.__init__(self, master)
         self.master = master
@@ -31,6 +9,9 @@ class Board(tkinter.Canvas):
         self.h = h
         self.W = master.W
         self.size = [w, h]
+
+        self.border: list[list[int, int]] = []
+        self.wall: list[list[int, int]] = []
 
         for a in range(h):
             self.border.append([-self.master.W, a * self.master.W])  # W

@@ -1,6 +1,8 @@
 import threading
 import time
 
+from widget import gameOverMessage as WidgetGameOverMessage
+
 
 class SnakeMonitor(threading.Thread):
     def __init__(self, page, snake):
@@ -13,4 +15,4 @@ class SnakeMonitor(threading.Thread):
         while self.target.condition != 3:
             time.sleep(1)
         print('Dead')
-        # GUIWidget.exit_init(master.current_page.root, monkeyhbd, 'single')
+        WidgetGameOverMessage.exit_init(self.page, self.target, 'single')
