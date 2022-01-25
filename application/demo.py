@@ -6,8 +6,7 @@ from page import welcome as PageWelcome
 
 class Game(tkinter.Tk):
     def __init__(self):
-        try:
-            # 告诉 Windows 使用程序自身的dpi适配
+        try:  # Windows
             ctypes.windll.shcore.SetProcessDpiAwareness(1)
         except AttributeError:  # Linux
             pass

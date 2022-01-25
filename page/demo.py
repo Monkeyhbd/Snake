@@ -8,8 +8,10 @@ class Page(tkinter.Canvas):
     LOADED = 2
     DESTROYED = -1
 
-    def __init__(self, master: tkinter.Tk, bg='SystemButtonFace'):
-        tkinter.Canvas.__init__(self, master, bg=bg)
+    def __init__(self, master: tkinter.Tk, bg=None):
+        tkinter.Canvas.__init__(self, master)
+        if bg is not None:
+            self['bg'] = bg
         self.master = master
         self.condition = self.INIT
         self.threads: list[threading.Thread] = []
