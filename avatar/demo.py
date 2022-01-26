@@ -291,6 +291,8 @@ class Snake(threading.Thread):
         if self.progress_bar is not None:
             self.progress_bar.update(self.len / self.progress_bar.val_sum)
 
+        fps_t = 0
+
         while True:
 
             self.counter += 1
@@ -316,6 +318,12 @@ class Snake(threading.Thread):
 
             self.body_update()
 
+            if self.counter % 5 == 0:
+                this_fps_t = time.perf_counter()
+                print(this_fps_t)
+                self.fps_label2['text'] = format_fps((this_fps_t - fps_t) / 5)
+                fps_t = this_fps_t
+
             te = time.perf_counter()
 
             tt = te - t0
@@ -324,9 +332,6 @@ class Snake(threading.Thread):
             if sleep_time > 0:
                 time.sleep(sleep_time)
                 # print('sleep' + str(self.counter))
-
-            if self.counter % 5 == 0:
-                self.fps_label2['text'] = format_fps(time.perf_counter() - t0)
 
     def run(self):  # Overwrite
         self.play()

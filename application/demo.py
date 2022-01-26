@@ -12,7 +12,7 @@ class Game(tkinter.Tk):
             pass
 
         tkinter.Tk.__init__(self)
-        self.tittle = 'Greedy Snake'
+        self.title('Greedy Snake')
         self.W = 30
         self.adapt_resolution()
         self.geometry('{:d}x{:d}+20+20'.format(42 * self.W, 22 * self.W))
