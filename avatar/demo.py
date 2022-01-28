@@ -85,7 +85,7 @@ class Snake(threading.Thread):
     END = 3
     BAD = 11
 
-    body: list[tkinter.Label] = []  # [head_label, body_label, ...]
+    body: list = []  # [head_label, body_label, ...]
 
     food: list = []  # [x, y, n, food_label]
 

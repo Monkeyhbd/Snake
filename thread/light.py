@@ -8,7 +8,7 @@ from data import theme as DataTheme
 
 
 class Flash(threading.Thread):
-    def __init__(self, lights: list[tkinter.Label]):
+    def __init__(self, lights: list):
         threading.Thread.__init__(self)
         self.lights = lights
 

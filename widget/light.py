@@ -11,7 +11,7 @@ def f3_line(x, width, height):
     return x * (width * W - x) / W / width / width * 4 * height
 
 
-def light_display(master, x, y, width, height, light_width_range, idle_range) -> list[tkinter.Label]:  # (2, 2.5) (5, 8)
+def light_display(master, x, y, width, height, light_width_range, idle_range) -> list:  # (2, 2.5) (5, 8)
     obj_list = []
     xx = W / 8
     colors = DataTheme.light_colors
