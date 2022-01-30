@@ -1,6 +1,6 @@
 import tkinter
 
-from page import main as PageMain
+from page import mainChristmas as PageMain
 
 
 if __name__ == '__main__':

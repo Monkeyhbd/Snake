@@ -320,7 +320,7 @@ class Snake(threading.Thread):
 
             if self.counter % 5 == 0:
                 this_fps_t = time.perf_counter()
-                print(this_fps_t)
+                # print(this_fps_t)
                 self.fps_label2['text'] = format_fps((this_fps_t - fps_t) / 5)
                 fps_t = this_fps_t
 

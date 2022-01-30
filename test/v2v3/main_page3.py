@@ -1,6 +1,6 @@
 import tkinter
 
-from page import main3 as PageMain
+from page import main as PageMain
 
 
 if __name__ == '__main__':
