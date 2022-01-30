@@ -4,7 +4,6 @@ from . import pixel as WidgetPixel
 
 
 class Button(tkinter.Canvas):
-
     place_backup = tkinter.Canvas.place
 
     def __init__(self, master, bg='White', active_background='LightGrey', fg='Black', text='', w=1, command=None):
@@ -30,5 +29,8 @@ class Button(tkinter.Canvas):
     def place(self, *args, **kwargs):
         self.place_backup(*args, **kwargs)
         self.update()
-        WidgetPixel.str_middle(self, s=self.text, x=0, y=0, width=self.winfo_width(),
-                               height=self.winfo_height(), w=self.w, color=self.fg)
+        rtn = WidgetPixel.str_middle(self, s=self.text, x=0, y=0, width=self.winfo_width(),
+                                     height=self.winfo_height(), w=self.w, color=self.fg)
+        if self.command is not None:
+            for label in rtn:
+                label.bind('<Button-1>', self.command)
