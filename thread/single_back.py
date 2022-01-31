@@ -1,7 +1,7 @@
 import threading
 import time
 
-from widget import gameOverMessage as WidgetGameOverMessage
+from widget.single import gameOverMessage as WidgetGameOverMessage
 
 
 class SnakeMonitor(threading.Thread):
@@ -15,4 +15,6 @@ class SnakeMonitor(threading.Thread):
         while self.target.condition != 3:
             time.sleep(1)
         print('Dead')
-        WidgetGameOverMessage.exit_init(self.page, self.target, 'single')
+        # WidgetGameOverMessage.exit_init(self.page, self.target, 'single')
+        message = WidgetGameOverMessage.Message(self.page, self.target)
+        message.display()
