@@ -8,6 +8,7 @@ from widget import progressBar as WidgetProgressBar
 from widget import pixel as WidgetPixel
 from widget import panel as WidgetPanel
 from widget import gameOverMessage as WidgetGameOverMessage
+from widget.level import failMessage as WidgetFailMessage
 from data import theme as DataTheme
 from data import wall as DataWall
 
@@ -88,7 +89,9 @@ def level(page, level_n: int) -> bool:
     result = wait_len(monkeyhbd, 30)
     if not result:
         print("Dead")
-        WidgetGameOverMessage.exit_init(page, monkeyhbd, 'level')
+        message = WidgetFailMessage.Message(master=page, snake=monkeyhbd)
+        message.display()
+        # WidgetGameOverMessage.exit_init(page, monkeyhbd, 'level')
         return False
     else:
         print('Access')
@@ -104,6 +107,10 @@ def level(page, level_n: int) -> bool:
 
 
 class Back(threading.Thread):
+    """ The backend monitor of level mode.
+
+    The thread will end after display a exit message after snake died (or win). """
+
     def __init__(self, page):
         threading.Thread.__init__(self)
         self.setDaemon(True)

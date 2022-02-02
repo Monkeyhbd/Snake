@@ -40,8 +40,6 @@ class Page(PageDemo.Page):
         self.len_label2 = rtn['len_label2']
         self.fps_label2 = rtn['fps_label2']
 
-        # ThreadLevelBack.level_back_create(self, self.board)
-
     def deploy(self):
         self.threads.append(ThreadLevelBack.Back(self))
 
