@@ -20,7 +20,7 @@ class Page(PageDemo.Page):
         # </Logo> -----------------------------------------------------------------------------------------------------
 
         # <Single Button> ---------------------------------------------------------------------------------------------
-        def single_mode(_):
+        def single_mode():
             PageSingle.init(self.master)
             PageSingle.display()
 
@@ -30,7 +30,7 @@ class Page(PageDemo.Page):
         # </Single Button> --------------------------------------------------------------------------------------------
 
         # <Level Button> ----------------------------------------------------------------------------------------------
-        def level_mode(_):
+        def level_mode():
             PageLevel.init(self.master)
             PageLevel.display()
 

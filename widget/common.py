@@ -18,6 +18,11 @@ class Button(tkinter.Canvas):
         self.w = w
         self.command = command
 
+        def cmd(_):
+            command()
+
+        self.cmd = cmd
+
         def enter(_):
             self['bg'] = active_background
 
@@ -27,7 +32,7 @@ class Button(tkinter.Canvas):
         self.bind('<Enter>', enter)
         self.bind('<Leave>', leave)
         if command is not None:
-            self.bind('<ButtonPress-1><ButtonRelease-1>', command)
+            self.bind('<ButtonPress-1><ButtonRelease-1>', cmd)
 
     def place(self, *args, **kwargs):
         self.place_backup(*args, **kwargs)
@@ -36,7 +41,7 @@ class Button(tkinter.Canvas):
                                      height=self.winfo_height(), w=self.w, color=self.fg)
         if self.command is not None:
             for label in rtn:
-                label.bind('<ButtonPress-1><ButtonRelease-1>', self.command)
+                label.bind('<ButtonPress-1><ButtonRelease-1>', self.cmd)
 
 
 class Label(tkinter.Canvas):

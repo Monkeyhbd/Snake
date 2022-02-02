@@ -36,22 +36,18 @@ class Message(tkinter.Canvas):
         # -------------------------------------------------------------------------------------------------------------
 
         # <Restart Button> --------------------------------------------------------------------------------------------
-        def restart(_):
+        def restart():
             page_master = self.master.master
-            print(1)
             self.master.destroy()
-            print(2)
             PageSingle.init(page_master)
-            print(3)
             PageSingle.display()
-            print(4)
 
         restart_button = WidgetCommon.Button(self, fg=DataTheme.default, text='RESTART', w=0.12 * w, command=restart)
         restart_button.place(x=0.3 * w, y=5.4 * w, width=5.7 * w, height=1.8 * w)
         # -------------------------------------------------------------------------------------------------------------
 
         # <Back Button> -----------------------------------------------------------------------------------------------
-        def back(_):
+        def back():
             self.master.destroy()
 
         back_button = WidgetCommon.Button(self, fg=DataTheme.default, text='BACK', w=0.12 * w, command=back)
