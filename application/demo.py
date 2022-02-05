@@ -17,6 +17,7 @@ class Game(tkinter.Tk):
         self.adapt_resolution()
         self.geometry('{:d}x{:d}+20+20'.format(42 * self.W, 22 * self.W))
         self.resizable(False, False)
+        self.iconbitmap('./data/logo256.ico')
 
         self.first_page = PageWelcome
 

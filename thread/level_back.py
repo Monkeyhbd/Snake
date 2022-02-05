@@ -27,7 +27,7 @@ def wall_display(master, position_list, color, wall_dead_point, wall_list):
     wall_dead_point.clear()
     wall_list.clear()
     for position in position_list:
-        wall = tkinter.Label(master, text='X', bg=color)
+        wall = tkinter.Label(master, bg=color)
         wall.place(x=position[0] * w, y=position[1] * w, width=w, height=w)
         wall_list.append(wall)
         wall_dead_point.append([int(position[0] * w), position[1] * w])
