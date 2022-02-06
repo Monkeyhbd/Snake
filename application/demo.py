@@ -1,5 +1,6 @@
 import tkinter
 import ctypes
+import platform
 import _tkinter
 
 from page import welcome as PageWelcome
@@ -22,6 +23,8 @@ class Game(tkinter.Tk):
             self.iconbitmap('./data/logo256.ico')
         except _tkinter.TclError:
             pass
+
+        self.os = platform.system()  # What Operating System the game running on.
 
         self.first_page = PageWelcome
 

@@ -293,6 +293,10 @@ class Snake(threading.Thread):
 
         fps_t = 0
 
+        idle = 0.02  # Default, Windows.
+        if self.master.master.master.os == 'Linux':
+            idle = 0.032
+
         while True:
 
             self.counter += 1
@@ -327,7 +331,7 @@ class Snake(threading.Thread):
             te = time.perf_counter()
 
             tt = te - t0
-            sleep_time = 0.02 - tt
+            sleep_time = idle - tt
 
             if sleep_time > 0:
                 time.sleep(sleep_time)
