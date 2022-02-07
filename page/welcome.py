@@ -16,15 +16,19 @@ class Page(PageDemo.Page):
 
     def build(self):
         w = 0.6 * self.W
-        board = tkinter.Canvas(self)
+
+        board = tkinter.Canvas(self, highlightthickness=0)
+        board['bg'] = self.master['bg']
         board.place(relx=0.5, rely=0.5, width=25 * w, height=10 * w, anchor='center')
 
-        logo = tkinter.Canvas(board)
+        logo = tkinter.Canvas(board, highlightthickness=0)
+        logo['bg'] = self.master['bg']
         logo.place(x=0, y=0, width=25 * w, height=6 * w)
         WidgetPixel.logo_flash(master=logo, x=0, y=0, w=w, logo_info=DataLogo.mokey, colors=DataTheme.mokey_logo_colors,
                                idle=0.03, option='default')
 
-        slogan = tkinter.Canvas(board)
+        slogan = tkinter.Canvas(board, highlightthickness=0)
+        slogan['bg'] = self.master['bg']
         slogan.place(x=0, y=6.8 * w, width=25 * w, height=3.2 * w)
         WidgetPixel.str_one_by_one(master=slogan, s="GITEE.COM / MONKEYHBD", x=0, y=0, w=0.25 * w,
                                    color='Black', idle=0.05)

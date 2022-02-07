@@ -12,6 +12,8 @@ class Page(tkinter.Canvas):
         tkinter.Canvas.__init__(self, master)
         if bg is not None:
             self['bg'] = bg
+        else:
+            self['bg'] = master['bg']
         self.master = master
         self.condition = self.INIT
         self.threads: list[threading.Thread] = []

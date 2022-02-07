@@ -24,6 +24,8 @@ class Game(tkinter.Tk):
         except _tkinter.TclError:
             pass
 
+        self['bg'] = '#E4FFDD'
+
         self.os = platform.system()  # What Operating System the game running on.
 
         self.first_page = PageWelcome
