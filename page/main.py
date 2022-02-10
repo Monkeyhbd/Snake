@@ -5,6 +5,7 @@ from data import theme as DataTheme
 
 from page import single as PageSingle
 from page import level as PageLevel
+from page import about as PageAbout
 
 
 class Page(PageDemo.Page):
@@ -45,8 +46,12 @@ class Page(PageDemo.Page):
         # </Setting Button> -------------------------------------------------------------------------------------------
 
         # <About Button> ----------------------------------------------------------------------------------------------
+        def about_page():
+            PageAbout.init(self.master)
+            PageAbout.display()
+
         about_button = WidgetCommon.Button(self, bg='White', active_background='LightGrey', fg='Purple',
-                                           text='ABOUT', w=0.16 * w)
+                                           text='ABOUT', w=0.16 * w, command=about_page)
         about_button.place(relx=0.5, x=-2.4 * w, y=16.5 * w, width=7.4 * w, height=2 * w)
         # </About Button> ---------------------------------------------------------------------------------------------
 

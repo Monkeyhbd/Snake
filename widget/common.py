@@ -62,3 +62,15 @@ class Label(tkinter.Canvas):
         self.update()
         WidgetPixel.str_middle(self, s=self.text, x=0, y=0, width=self.winfo_width(),
                                height=self.winfo_height(), w=self.w, color=self.fg)
+
+
+class Box(tkinter.Frame):
+    """ Box widget to include other widget. """
+
+    def __init__(self, master, bg=None):
+        tkinter.Frame.__init__(self, master, highlightthickness=0)
+
+        if bg is None:
+            self['bg'] = master['bg']
+        else:
+            self['bg'] = bg
