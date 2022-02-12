@@ -47,6 +47,8 @@ symbol_slash = [3, [2, 0], [1, 1], [1, 2], [1, 3], [0, 4]]  # /
 bracket_left = [2, [1, 0], [0, 1], [0, 2], [0, 3], [1, 4]]  # (
 bracket_right = [2, [0, 0], [1, 1], [1, 2], [1, 3], [0, 4]]  # )
 
+colon = [2, [1, 1], [1, 3]]  # :
+
 char_dict = {'A': A, 'B': B, 'C': C, 'D': D, 'E': E, 'F': F, 'G': G,
              'H': H, 'I': I, 'J': J, 'K': K, 'L': L, 'M': M, 'N': N,
              'O': O, 'P': P, 'Q': Q, 'R': R, 'S': S, 'T': T, 'U': U,
@@ -55,4 +57,4 @@ char_dict = {'A': A, 'B': B, 'C': C, 'D': D, 'E': E, 'F': F, 'G': G,
              '0': num0, '1': num1, '2': num2, '3': num3, '4': num4,
              '5': num5, '6': num6, '7': num7, '8': num8, '9': num9,
              '-': symbol_minus, '.': symbol_dot, '/': symbol_slash,
-             '(': bracket_left, ')': bracket_right}
+             '(': bracket_left, ')': bracket_right, ':': colon}
