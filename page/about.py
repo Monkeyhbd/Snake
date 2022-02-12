@@ -84,6 +84,14 @@ class Page(PageDemo.Page):
                                colors=DataTheme.mokey_logo_colors, idle=0.03)
         # -------------------------------------------------------------------------------------------------------------
 
+        # <Back Button> -----------------------------------------------------------------------------------------------
+        def back_button_md():
+            self.destroy()
+
+        back_button = WidgetCommon.Button(self, text='BACK', w=0.1 * w, command=back_button_md)
+        back_button.place(x=0.5 * w, y=0.5 * w, width=2.8 * w, height=1.2 * w)
+        # -------------------------------------------------------------------------------------------------------------
+
 
 page_instance: Page
 
