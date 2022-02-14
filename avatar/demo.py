@@ -293,9 +293,9 @@ class Snake(threading.Thread):
 
         fps_t = 0
 
-        idle = 0.02  # Default, Windows.
-        if self.master.master.master.os == 'Linux':
-            idle = 0.032
+        idle = 0.032  # Default, Linux.
+        if self.master.master.master.os == 'Windows':
+            idle = 0.02
 
         while True:
 
