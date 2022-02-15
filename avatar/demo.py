@@ -102,7 +102,7 @@ class Snake(threading.Thread):
                  fps_label2=None,
                  progress_bar=None):
         threading.Thread.__init__(self)
-        self.setDaemon(True)
+        self.daemon = True
         self.master = master
         self.head = [x * w, y * w]
         self.point = [self.head, [self.head[0] - length * w, self.head[1]]]  # [头，转弯节点，转弯节点 ... 末位位置]，len >= 2
@@ -294,8 +294,14 @@ class Snake(threading.Thread):
         fps_t = 0
 
         idle = 0.032  # Default, Linux.
-        if self.master.master.master.os == 'Windows':
-            idle = 0.02
+        try:
+            if self.master.master.master.os == 'Windows':
+                idle = 0.02
+        except AttributeError:
+            import platform
+            self.master.master.master.os = platform.system()
+            if self.master.master.master.os == 'Windows':
+                idle = 0.02
 
         while True:
 

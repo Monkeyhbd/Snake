@@ -1,8 +1,12 @@
-import module.graphic.environment as GUIEnvironment
-import module.graphic.page as GUIPage
+import tkinter
+
+from page import mainChristmas as PageMain
 
 
 if __name__ == '__main__':
-    lmy = GUIEnvironment.window
-    GUIPage.main_page(lmy)
+    lmy = tkinter.Tk()
+    lmy.geometry('840x440')
+    lmy.title('Main Page')
+    PageMain.init(master=lmy)
+    PageMain.display()
     lmy.mainloop()

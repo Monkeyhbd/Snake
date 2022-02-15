@@ -1,7 +1,7 @@
 import tkinter
 
 from . import demo as PageDemo
-from data import graphic as DataGraphic
+from data import graphicChristmas as DataGraphic
 from data import logo as DataLogo
 from data import theme as DataTheme
 from widget import pixel as WidgetPixel
