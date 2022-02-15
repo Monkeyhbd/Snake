@@ -58,6 +58,7 @@ def str_middle(master, s, x, y, width, height, w, color, option='default'):
 
 
 def graphic_display(master, data, x, y, w):
+    w = int(w)
     obj_list = []
     for unit in data:
         pixel = tkinter.Label(master, bg=unit[2])
@@ -66,7 +67,24 @@ def graphic_display(master, data, x, y, w):
     return obj_list
 
 
+def graphic_middle(master, data, x, y, width, height, w):
+    w = int(w)
+    graphic_width, graphic_height = 0, 0
+    for position in data:
+        if position[0] + 1 > graphic_width:
+            graphic_width = position[0] + 1
+        if position[1] + 1 > graphic_height:
+            graphic_height = position[1] + 1
+    graphic_width *= w
+    graphic_height *= w
+    graphic_x = x + 0.5 * width - 0.5 * graphic_width
+    graphic_y = y + 0.5 * height - 0.5 * graphic_width
+    rtn = graphic_display(master=master, data=data, x=graphic_x, y=graphic_y, w=w)
+    return rtn
+
+
 def graphic_display_turbo(master, data, x, y, w):
+    w = int(w)
     obj_list = []
     for unit in data:
         pixel = tkinter.Label(master, bg=unit[4])
