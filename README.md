@@ -1,10 +1,9 @@
-# **贪吃蛇 -  Python 游戏**
-
+# **贪吃蛇 - Greedy Snake**
 
 
 ## 简介
 
-这是一个由Python编写，使用Tkinter图形接口实现的贪吃蛇游戏，支持Windows，Linux和MacOS。
+这是一个基于 Python (Tkinter) 的贪吃蛇游戏，支持Windows，Linux和MacOS。
 
 ![Snake](http://monkeyhbd.gitee.io/mokey-land/Data/Snake.png "Snake")
 
