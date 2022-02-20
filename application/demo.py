@@ -36,7 +36,7 @@ class Game(tkinter.Tk):
         if height >= 2160:
             self.W = 90
         elif height >= 1440:
-            self.W = 50
+            self.W = 55
         elif height >= 1080:
             self.W = 40
         else:
