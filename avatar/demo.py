@@ -93,11 +93,11 @@ class Snake(threading.Thread):
                  master: WidgetBoard.Board,
                  x: int = 0,
                  y: int = 0,
-                 w: "the width of a block" = 20,
-                 length: "initial length of snake" = 5,
-                 step=2,
-                 head_color: "the color of snake's head" = 'black',
-                 body_color: "the color of snake's body" = 'red',
+                 w: int = 20,  # the width of a block
+                 length: int = 5,  # initial length of snake
+                 step: int=2,
+                 head_color: str = 'black',  # the color of snake's head
+                 body_color: str = 'red',  # the color of snake's body
                  len_label2=None,
                  fps_label2=None,
                  progress_bar=None):
