@@ -19,10 +19,16 @@ class SnakeMonitor(threading.Thread):
 
         length = self.target.len
 
-        f = open(file='data/scoreBoard.iopt', mode='r+')
-        history = eval(f.readlines()[0])
+        try:
+            f = open(file='data/scoreBoard.iopt', mode='r+')
+            history = eval(f.readlines()[0])
+        except (IndexError, FileNotFoundError):
+            f = open(file='data/scoreBoard.iopt', mode='w+')
+            history = []
         history.append(length)
         history.sort(reverse=True)
+        if len(history) > 10:
+            history = history[: 10]
         f.seek(0)
         f.truncate()
         f.write(str(history))

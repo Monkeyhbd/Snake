@@ -11,7 +11,10 @@ class Button(tkinter.Canvas):
     def __init__(self, master, bg='White', active_background='LightGrey', fg='Black', text='', w=1, command=None):
         tkinter.Canvas.__init__(self, master, bg=bg)
         self.master = master
-        self.bg = bg
+        if bg is None:
+            self['bg'] = master['bg']
+        else:
+            self['bg'] = bg
         self.active_background = active_background
         self.fg = fg
         self.text = text
@@ -52,7 +55,10 @@ class Label(tkinter.Canvas):
     def __init__(self, master, bg='White', fg='Black', text='', w=1):
         tkinter.Canvas.__init__(self, master, bg=bg)
         self.master = master
-        self.bg = bg
+        if bg is None:
+            self['bg'] = master['bg']
+        else:
+            self['bg'] = bg
         self.fg = fg
         self.text = text
         self.w = w
