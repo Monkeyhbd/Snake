@@ -12,6 +12,8 @@ class Game(tkinter.Tk):
             ctypes.windll.shcore.SetProcessDpiAwareness(1)
         except AttributeError:  # Linux
             pass
+        except OSError:  # Happens on school's computer. (Windows 7 Python 3.6.6)
+            pass
 
         tkinter.Tk.__init__(self)
         self.title('Greedy Snake')
