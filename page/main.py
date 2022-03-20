@@ -7,6 +7,7 @@ from data import graphic as DataGraphic
 from page import single as PageSingle
 from page import level as PageLevel
 from page import about as PageAbout
+from page import setting as PageSetting
 
 
 class Page(PageDemo.Page):
@@ -42,7 +43,10 @@ class Page(PageDemo.Page):
         # </Level Button> ---------------------------------------------------------------------------------------------
 
         # <Setting Button> --------------------------------------------------------------------------------------------
-        setting_button = WidgetCommon.Button(self, bg='White', active_background='LightGrey')
+        def setting_page():
+            PageSetting.init(self.master)
+            PageSetting.display()
+        setting_button = WidgetCommon.Button(self, bg='White', active_background='LightGrey', command=setting_page)
         setting_button.place(relx=0.5, x=-5 * w, y=16.5 * w, width=2 * w, height=2 * w)
         WidgetPixel.graphic_middle(master=setting_button, data=DataGraphic.setting_icon,
                                    x=0, y=0, width=2 * w, height=2 * w, w=0.16 * w)

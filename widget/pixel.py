@@ -6,6 +6,7 @@ from data import char as DataChar
 
 
 def char_display(master, c, x, y, w, color, option='default'):
+    x, y = int(x), int(y)
     w = int(w)
     position_list = DataChar.char_dict[c][1:]
     obj_list = []

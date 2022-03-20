@@ -9,7 +9,7 @@ class Button(tkinter.Canvas):
     place_backup = tkinter.Canvas.place
 
     def __init__(self, master, bg='White', active_background='LightGrey', fg='Black', text='', w=1, command=None):
-        tkinter.Canvas.__init__(self, master, bg=bg)
+        tkinter.Canvas.__init__(self, master, bg=bg, highlightthickness=0)
         self.master = master
         if bg is None:
             self['bg'] = master['bg']
@@ -52,8 +52,8 @@ class Label(tkinter.Canvas):
 
     place_backup = tkinter.Canvas.place
 
-    def __init__(self, master, bg='White', fg='Black', text='', w=1):
-        tkinter.Canvas.__init__(self, master, bg=bg)
+    def __init__(self, master, bg='White', fg='Black', text='', w=1, align='center'):
+        tkinter.Canvas.__init__(self, master, bg=bg, highlightthickness=0)
         self.master = master
         if bg is None:
             self['bg'] = master['bg']
@@ -62,12 +62,17 @@ class Label(tkinter.Canvas):
         self.fg = fg
         self.text = text
         self.w = w
+        self.align = align
 
     def place(self, *args, **kwargs):
         self.place_backup(*args, **kwargs)
         self.update()
-        WidgetPixel.str_middle(self, s=self.text, x=0, y=0, width=self.winfo_width(),
-                               height=self.winfo_height(), w=self.w, color=self.fg)
+        if self.align == 'left':
+            WidgetPixel.str_display(self, s=self.text, x=self.w, y=0.5 * kwargs['height'] - 0.5 * 5 * self.w,
+                                    w=self.w, color=self.fg)
+        else:
+            WidgetPixel.str_middle(self, s=self.text, x=0, y=0, width=self.winfo_width(),
+                                   height=self.winfo_height(), w=self.w, color=self.fg)
 
 
 class Box(tkinter.Frame):

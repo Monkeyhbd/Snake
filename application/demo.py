@@ -31,6 +31,8 @@ class Game(tkinter.Tk):
 
         self.os = platform.system()  # What Operating System the game running on.
 
+        self.python_version = platform.python_version()
+
         self.clock_resolution = time.get_clock_info('monotonic').resolution
 
         self.clock_accurate = True  # Linux, Mac OS, Windows 7
