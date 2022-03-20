@@ -1,4 +1,5 @@
 import tkinter
+import time
 import ctypes
 import platform
 import _tkinter
@@ -29,6 +30,12 @@ class Game(tkinter.Tk):
         self['bg'] = '#E4FFDD'
 
         self.os = platform.system()  # What Operating System the game running on.
+
+        self.clock_resolution = time.get_clock_info('monotonic').resolution
+
+        self.clock_accurate = True  # Linux, Mac OS, Windows 7
+        if self.clock_resolution > 0.005:
+            self.clock_accurate = False  # Windows 10, Windows 11
 
         self.first_page = PageWelcome
 

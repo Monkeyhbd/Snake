@@ -295,12 +295,11 @@ class Snake(threading.Thread):
 
         idle = 0.032  # Default, Linux.
         try:
-            if self.master.master.master.os == 'Windows':
+            if not self.master.master.master.clock_accurate:
                 idle = 0.02
         except AttributeError:
-            import platform
-            self.master.master.master.os = platform.system()
-            if self.master.master.master.os == 'Windows':
+            self.master.master.master.clock_accurate = time.get_clock_info('monotonic').resolution
+            if not self.master.master.master.clock_accurate:
                 idle = 0.02
 
         while True:
