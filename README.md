@@ -20,18 +20,19 @@
 
 ![Single Mode](https://monkeyhbd.gitee.io/mokey-land/image/snake/v30beta/level_mode.png "Single Mode")
 
-## 最新版本 (3.0.0-beta)
+## 最新版本 (3.0.0)
 
 ### 更新内容
 
+- 新增了设置页面
+- 更换了闯关模式中的彩蛋
+- 全新的 UI 设计
+- 修复了 Windows 7 系统下帧率异常的问题
+- 修复了某些设备上出现 OSError 的问题
 - 系统级重构，优化软件架构，提升游戏性能
-- 修复了Linux系统下帧率异常的问题
-- UI优化，重新设计了主页面，游戏结束对话框
+- 修复了 Linux 系统下帧率异常的问题
+- UI 优化，重新设计了主页面，游戏结束对话框
 - 游戏结束对话框中，新增了“重新开始”按钮
-
-### Beta版本
-
-- 没有开放设置选项（主页面）
 
 ## 历史版本
 - Snake 2.3.0 Christmas [视频展示](https://share.plvideo.cn/front/video/preview?vid=0826dfb910cddb69a7b7b3b9d0da48d7_0)
