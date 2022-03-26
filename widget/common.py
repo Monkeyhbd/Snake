@@ -37,14 +37,17 @@ class Button(tkinter.Canvas):
         if command is not None:
             self.bind('<ButtonPress-1><ButtonRelease-1>', cmd)
 
+    def set_components_onclick(self, components):
+        for label in components:
+            label.bind('<ButtonPress-1><ButtonRelease-1>', self.cmd)
+
     def place(self, *args, **kwargs):
         self.place_backup(*args, **kwargs)
         self.update()
         rtn = WidgetPixel.str_middle(self, s=self.text, x=0, y=0, width=self.winfo_width(),
                                      height=self.winfo_height(), w=self.w, color=self.fg)
         if self.command is not None:
-            for label in rtn:
-                label.bind('<ButtonPress-1><ButtonRelease-1>', self.cmd)
+            self.set_components_onclick(rtn)
 
 
 class Label(tkinter.Canvas):

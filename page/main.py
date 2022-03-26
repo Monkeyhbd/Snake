@@ -20,6 +20,7 @@ class Page(PageDemo.Page):
         # <Logo> ------------------------------------------------------------------------------------------------------
         WidgetPixel.str_middle(self, s='S N A K E   3', x=0, y=2 * w, width=self.winfo_width(), height=3 * w,
                                w=0.3 * w, color=DataTheme.snake_logo)
+
         # </Logo> -----------------------------------------------------------------------------------------------------
 
         # <Single Button> ---------------------------------------------------------------------------------------------
@@ -30,6 +31,7 @@ class Page(PageDemo.Page):
         single_button = WidgetCommon.Button(self, bg='White', active_background='LightGrey', fg=DataTheme.single_theme,
                                             text='SINGLE MODE', w=0.18 * w, command=single_mode)
         single_button.place(relx=0.5, x=-5 * w, y=8 * w, width=10 * w, height=2.4 * w)
+
         # </Single Button> --------------------------------------------------------------------------------------------
 
         # <Level Button> ----------------------------------------------------------------------------------------------
@@ -40,16 +42,19 @@ class Page(PageDemo.Page):
         level_button = WidgetCommon.Button(self, bg='White', active_background='LightGrey', fg=DataTheme.level_theme,
                                            text='LEVEL MODE', w=0.18 * w, command=level_mode)
         level_button.place(relx=0.5, x=-5 * w, y=11 * w, width=10 * w, height=2.4 * w)
+
         # </Level Button> ---------------------------------------------------------------------------------------------
 
         # <Setting Button> --------------------------------------------------------------------------------------------
         def setting_page():
             PageSetting.init(self.master)
             PageSetting.display()
+
         setting_button = WidgetCommon.Button(self, bg='White', active_background='LightGrey', command=setting_page)
         setting_button.place(relx=0.5, x=-5 * w, y=16.5 * w, width=2 * w, height=2 * w)
-        WidgetPixel.graphic_middle(master=setting_button, data=DataGraphic.setting_icon,
-                                   x=0, y=0, width=2 * w, height=2 * w, w=0.16 * w)
+        rtn = WidgetPixel.graphic_middle(master=setting_button, data=DataGraphic.setting_icon,
+                                         x=0, y=0, width=2 * w, height=2 * w, w=0.16 * w)
+        setting_button.set_components_onclick(rtn)
         # </Setting Button> -------------------------------------------------------------------------------------------
 
         # <About Button> ----------------------------------------------------------------------------------------------

@@ -30,7 +30,7 @@ class Page(PageDemo.Page):
         # -------------------------------------------------------------------------------------------------------------
 
         # <System Information> ----------------------------------------------------------------------------------------
-        system_info1 = WidgetCommon.Label(container, text='SYSTEM:', w=0.1 * w, align='left', bg=None)
+        system_info1 = WidgetCommon.Label(container, text='OS TYPE:', w=0.1 * w, align='left', bg=None)
         system_info1.place(x=9 * w, y=3 * w, height=1.4 * w, width=5 * w)
         system_info2 = WidgetCommon.Label(container, text=platform.system().upper(), w=0.1 * w, align='left', bg=None)
         system_info2.place(x=16 * w, y=3 * w, height=1.4 * w, width=5 * w)
@@ -42,6 +42,14 @@ class Page(PageDemo.Page):
         interpreter_info2 = WidgetCommon.Label(container, text=platform.python_version().upper(),
                                                w=0.1 * w, align='left', bg=None)
         interpreter_info2.place(x=16 * w, y=4.6 * w, height=1.4 * w, width=5 * w)
+        # -------------------------------------------------------------------------------------------------------------
+
+        # <Game Information> ------------------------------------------------------------------------------------------
+        game_info1 = WidgetCommon.Label(container, text='GAME VERSION:', w=0.08 * w, align='left', bg=None)
+        game_info1.place(x=9 * w, y=6.2 * w, height=1.4 * w, width=5 * w)
+        game_info2 = WidgetCommon.Label(container, text='3.0.0 - BETA',
+                                        w=0.1 * w, align='left', bg=None)
+        game_info2.place(x=16 * w, y=6.2 * w, height=1.4 * w, width=5 * w)
         # -------------------------------------------------------------------------------------------------------------
 
 
