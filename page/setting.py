@@ -47,7 +47,7 @@ class Page(PageDemo.Page):
         # <Game Information> ------------------------------------------------------------------------------------------
         game_info1 = WidgetCommon.Label(container, text='GAME VERSION:', w=0.08 * w, align='left', bg=None)
         game_info1.place(x=9 * w, y=6.2 * w, height=1.4 * w, width=5 * w)
-        game_info2 = WidgetCommon.Label(container, text='3.0.0 - BETA',
+        game_info2 = WidgetCommon.Label(container, text='3.0.0',
                                         w=0.1 * w, align='left', bg=None)
         game_info2.place(x=16 * w, y=6.2 * w, height=1.4 * w, width=5 * w)
         # -------------------------------------------------------------------------------------------------------------
