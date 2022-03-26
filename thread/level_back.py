@@ -7,8 +7,8 @@ from widget import door as WidgetDoor
 from widget import progressBar as WidgetProgressBar
 from widget import pixel as WidgetPixel
 from widget import panel as WidgetPanel
-from widget import gameOverMessage as WidgetGameOverMessage
 from widget.level import failMessage as WidgetFailMessage
+from widget.level import winMessage as WidgetWinMessage
 from data import theme as DataTheme
 from data import wall as DataWall
 
@@ -97,8 +97,9 @@ def level(page, level_n: int) -> bool:
         print('Access')
         if level_n == len(DataWall.level_box):  # Last level
             print("Win")
-
-            WidgetGameOverMessage.exit_init(page, monkeyhbd, 'level_win')
+            message = WidgetWinMessage.Message(master=page)
+            message.display()
+            # WidgetGameOverMessage.exit_init(page, monkeyhbd, 'level_win')
         else:
             monkeyhbd.body_destroy()
             monkeyhbd.food[3].destroy()
